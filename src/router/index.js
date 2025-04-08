@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Filter from '@/views/Filter.vue';
-import SignUp from '@/views/SignUp.vue';
+import Login from '@/views/Login.vue';
 
 const routes = [
   {
@@ -9,9 +9,9 @@ const routes = [
     component: Filter,
   },
   {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: SignUp,
+    path: '/Login',
+    name: 'Login',
+    component: Login,
   },
 ];
 
