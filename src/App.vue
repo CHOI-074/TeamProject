@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <h1 class="text-2xl font-bold text-center mb-4">필터링 기능</h1>
-    <!-- Filter 컴포넌트 불러오기 -->
-    <Filter />
+    <TransactionHistory />
   </div>
 </template>
 
 <script>
-import Filter from './views/Filter.vue';
+import TransactionHistory from './views/TransactionHistory.vue';
 
 export default {
   name: 'App',
   components: {
-    Filter,
+    TransactionHistory,
   },
 };
 </script>
 
 <style>
 body {
-  font-family: 'Arial', sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+#app {
+  text-align: center;
 }
 </style>
