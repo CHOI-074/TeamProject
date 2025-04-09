@@ -5,6 +5,8 @@ import { useRecordStore } from '@/stores/recordStore';
 import { useUserStore } from '@/stores/userStore';
 import { useRoute, useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
+import PrimaryButton from '@/components/common/PrimaryButton.vue';
+import DangerButton from '@/components/common/DangerButton.vue';
 
 const store = useRecordStore();
 const userStore = useUserStore();
@@ -40,26 +42,17 @@ onMounted(fetchData);
 <template>
   <div class="ExpenseEditPage">
     <RecordForm :initialForm="form" type="expense" @update:form="updateForm" />
-    <div class="button-row">
-      <button @click="update">수정</button>
-      <button @click="remove">삭제</button>
+    <div class="flex gap-4 mt-6">
+      <PrimaryButton
+        class="flex-1 py-3 text-base"
+        type="button"
+        @click="update"
+      >
+        수정
+      </PrimaryButton>
+      <DangerButton class="flex-1 py-3 text-base" type="button" @click="remove">
+        삭제
+      </DangerButton>
     </div>
   </div>
 </template>
-
-<style scoped>
-.button-row {
-  display: flex;
-  gap: 1rem;
-  margin-left: 2rem;
-  margin-top: 1rem;
-}
-
-button {
-  border: 1px solid gray;
-  width: 5rem;
-  height: 2.5rem;
-  border-radius: 1.25rem;
-  cursor: pointer;
-}
-</style>

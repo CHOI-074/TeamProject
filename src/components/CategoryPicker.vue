@@ -2,6 +2,7 @@
 // 카테고리 버튼 목록
 import { ref, computed, onMounted, watch } from 'vue';
 import api from '@/api/api';
+import CategoryButton from './common/CategoryButton.vue';
 
 // 부모로부터 type을 props로 전달받음
 // 카테고리 필터 기준이 됨
@@ -27,39 +28,34 @@ function handleClick(category) {
 }
 
 onMounted(fetchCategory);
-watch(() => props.type, fetchCategory);
+watch(
+  () => props.type,
+  async (val) => {
+    if (!val) return;
+    const res = await api.get('/category');
+    categories.value = res.data.filter((c) => c.type === val);
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <div class="CategoryPicker">
-    <button
+  <div class="CategoryPicker flex flex-wrap gap-2 mt-2">
+    <!-- <button
       v-for="category in categories"
       :key="category.id"
       :class="{ selected: modelValue == category.id }"
       @click="handleClick(category)"
+      {{ category.name }}
+      </button>
+    > -->
+    <CategoryButton
+      v-for="category in categories"
+      :key="category.id"
+      :active="modelValue == category.id"
+      @click="handleClick(category)"
     >
       {{ category.name }}
-    </button>
+    </CategoryButton>
   </div>
 </template>
-
-<style scoped>
-.CategoryPicker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-}
-button {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background-color: #f8f8f8;
-  cursor: pointer;
-}
-button.selected {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
-}
-</style>

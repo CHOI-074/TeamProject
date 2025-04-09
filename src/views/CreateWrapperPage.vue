@@ -1,44 +1,46 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import TypeSwitch from '@/components/TypeSwitch.vue';
 import IncomeCreatePage from './IncomeCreatePage.vue';
 import ExpenseCreatePage from './ExpenseCreatePage.vue';
+import incomeImg from '@/assets/incomeImg.png';
+import expenseImg from '@/assets/expenseImg.png';
 
-// 현재 URL 정보
 const route = useRoute();
-// 페이지 이동
 const router = useRouter();
-// 현재 수입/지출 상태를 담는 반응형 변수
-const currentType = ref(route.query.type || 'income');
 
-// 진입 시 URL에 쿼리가 없으면 기본값 설정
-onMounted(() => {
-  if (!route.query.type) {
-    router.replace({ query: { type: 'income' } });
-  }
-});
+// 쿼리로부터 type을 computed로 유지
+const currentType = computed(() => route.query.type || 'income');
 
-// TypeSwitch에서 값이 바뀌면 실행되는 함수
 function toggleType(type) {
-  currentType.value = type;
-  router.replace({ query: { type } });
+  router.replace({
+    path: route.path,
+    query: { type },
+  });
 }
-
-// 쿼리 변경 감지해서 currentType 반영
-watch(
-  () => route.query.type,
-  (val) => {
-    currentType.value = val || 'income';
-  }
-);
 </script>
 
 <template>
-  <div class="CreateWrapperPage">
+  <div class="CreateWrapperPage max-w-md mx-auto px-4 py-6">
+    <img
+      v-if="currentType === 'income'"
+      :src="incomeImg"
+      alt="수입 배너"
+      class="mx-auto mb-4 w-64 h-auto"
+    />
+    <img
+      v-else
+      :src="expenseImg"
+      alt="지출 배너"
+      class="mx-auto mb-4 w-64 h-auto"
+    />
+
     <TypeSwitch :modelValue="currentType" @update:modelValue="toggleType" />
+
     <component
       :is="currentType === 'income' ? IncomeCreatePage : ExpenseCreatePage"
+      :key="`${currentType}-${route.path}`"
     />
   </div>
 </template>
