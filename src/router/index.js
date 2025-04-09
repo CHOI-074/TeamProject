@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Filter from '@/views/Filter.vue';
-import Login from '@/views/Login.vue';
+import MyPage from '@/views/MyPage.vue';
 
 const routes = [
   {
@@ -9,9 +9,9 @@ const routes = [
     component: Filter,
   },
   {
-    path: '/Login',
-    name: 'Login',
-    component: Login,
+    path: '/MyPage',
+    name: 'MyPage',
+    component: MyPage,
   },
 ];
 
