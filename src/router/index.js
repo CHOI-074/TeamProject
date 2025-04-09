@@ -1,17 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Filter from '@/views/Filter.vue';
+import Home from '@/views/Home.vue';
+import Transaction from '@/views/Transaction.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Filter,
-  },
+    component: Home,
+    children: [
+      {
+        path: 'transactions',
+        component: Transaction
+      }
+    ]
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;
