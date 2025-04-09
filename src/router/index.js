@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Filter from '@/views/Filter.vue';
 import MyPage from '@/views/MyPage.vue';
-import Login from '@/views/Login.vue';
 
 const routes = [
   {
@@ -13,11 +12,6 @@ const routes = [
     path: '/MyPage',
     name: 'MyPage',
     component: MyPage,
-  },
-  {
-    path: '/Login',
-    name: 'Login',
-    component: Login,
   },
 ];
 
