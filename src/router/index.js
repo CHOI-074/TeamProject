@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Filter from '@/views/Filter.vue';
 import DashboardView from '../views/DashboardView.vue';
 import SumboardView from '../views/SumboardView.vue';
+import Top5Chart from "../components/charts/Top5Chart.vue"; // Top5Chart 컴포넌트 import
+
 
 const routes = [
   {
@@ -18,6 +20,11 @@ const routes = [
     path: '/sum', // "/sum" 경로로 이동 시 SumboardView를 보여줌
     name: 'Sumboard',
     component: SumboardView,
+  },
+  {
+    path: "/top5",
+    name: "top5",
+    component: Top5Chart, // 홈 라우트에 Top5Chart 연결
   },
 ];
 

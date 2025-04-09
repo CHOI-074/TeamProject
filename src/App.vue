@@ -6,6 +6,8 @@
       <router-link to="/" class="hover:underline">필터</router-link>
       <router-link to="/dash" class="hover:underline">대시보드</router-link>
       <router-link to="/sum" class="hover:underline">총합보드</router-link>
+      <router-link to="/top5" class="hover:underline">Top 5 차트</router-link>
+
     </nav>
 
     <!-- 현재 라우터 경로에 맞는 컴포넌트를 여기에 렌더링 -->
