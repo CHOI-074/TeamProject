@@ -55,7 +55,7 @@
             v-for="(type, index) in types"
             :key="index"
             @click="toggleSelection('type', type)"
-            :class="['py-2 border rounded-lg', selectedType === type ? 'bg-blue-600 text-white' : 'text-gray-500']"
+            :class="['py-2 border rounded-lg', selectedType.includes(type) ? 'bg-blue-600 text-white' : 'text-gray-500']"
           >
             {{ type }}
           </button>
@@ -108,7 +108,7 @@ export default {
     return {
       selectedPeriod: '',
       selectedRange: '',
-      selectedType: '',
+      selectedType: [], // 복수 선택 가능하도록 배열로 변경
       selectedOrder: '',
       startDate: '',
       endDate: '',
@@ -133,16 +133,29 @@ export default {
   },
   methods: {
     toggleSelection(category, value) {
-      if (category === 'period') this.selectedPeriod = this.selectedPeriod === value ? '' : value;
-      if (category === 'range') this.selectedRange = this.selectedRange === value ? '' : value;
-      if (category === 'type') this.selectedType = this.selectedType === value ? '' : value;
-      if (category === 'order') this.selectedOrder = this.selectedOrder === value ? '' : value;
+      if (category === 'period') {
+        this.selectedPeriod = this.selectedPeriod === value ? '' : value;
+      }
+      if (category === 'range') {
+        this.selectedRange = this.selectedRange === value ? '' : value;
+      }
+      if (category === 'type') {
+        const index = this.selectedType.indexOf(value);
+        if (index > -1) {
+          this.selectedType.splice(index, 1); // 선택 해제
+        } else {
+          this.selectedType.push(value); // 선택 추가
+        }
+      }
+      if (category === 'order') {
+        this.selectedOrder = this.selectedOrder === value ? '' : value;
+      }
     },
     saveFilter() {
       const filterData = {
         period: this.selectedPeriod,
         range: this.selectedRange,
-        type: this.selectedType,
+        type: this.selectedType, // 배열로 저장됨
         order: this.selectedOrder,
         startDate: this.startDate,
         endDate: this.endDate,

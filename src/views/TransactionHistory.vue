@@ -19,7 +19,7 @@
       <!-- 날짜 필터링 및 작성 버튼 영역 -->
       <div class="flex justify-between mb-4 space-x-2">
         <button
-          @click="showModal = true"
+          @click="isModalOpen = true"
           class="flex items-center justify-between flex-1 bg-transparent border border-gray-300 rounded-full px-4 py-2 text-gray-600 shadow-sm"
         >
           <span>&nbsp;&nbsp;최근&nbsp;&nbsp;/&nbsp;&nbsp;전체&nbsp;&nbsp;/&nbsp;&nbsp;최신순</span>
@@ -40,10 +40,13 @@
           <li>카테고리</li>
           <li>수입/지출</li>
         </ul>
-        <Transaction/>
+        <Transaction :transactions="displayedTransactions" />
       </div>
     </section>
+
+    <!-- 모달 -->
     <Filter v-if="isModalOpen" @close="isModalOpen = false" />
+
     <!-- 하단 고정 영역: '더보기' 버튼과 총액 표시, 상하 간격 늘림 -->
     <div class="fixed bottom-0 left-0 w-full">
       <div v-if="visibleCount < transactions.length" class="flex justify-center px-4 mb-4">
@@ -64,6 +67,7 @@
 <script>
 import Filter from '@/components/Filter.vue';
 import Transaction from './Transaction.vue';
+
 export default {
   name: 'TransactionHistory',
   components: {
@@ -72,12 +76,9 @@ export default {
   },
   data() {
     return {
-      showModal: false,
-      isModalOpen: false,
-      transactions: [
-        
-      ],
-      visibleCount: 6,
+      isModalOpen: false, // 모달 상태 관리
+      transactions: [], // 거래 내역 데이터
+      visibleCount: 6, // 처음 보이는 항목 개수
     };
   },
   computed: {
@@ -94,7 +95,7 @@ export default {
       }, 0);
     },
     totalAmountFormatted() {
-      return this.totalAmount.toLocaleString();
+      return (this.totalAmount || 0).toLocaleString();
     },
   },
   methods: {
