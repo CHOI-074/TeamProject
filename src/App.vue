@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <TransactionHistory />
+
   </div>
 </template>
 
 <script>
+import FilteredTransaction from './components/FilteredTransaction.vue';
 import TransactionHistory from './views/TransactionHistory.vue';
 
 export default {
   name: 'App',
   components: {
     TransactionHistory,
+    FilteredTransaction
   },
 };
 </script>

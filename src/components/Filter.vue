@@ -98,6 +98,7 @@
         <button @click="saveFilter" class="flex-1 rounded-lg py-3 font-semibold bg-blue-600 text-white">조회</button>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -108,7 +109,7 @@ export default {
     return {
       selectedPeriod: '',
       selectedRange: '',
-      selectedType: [], // 복수 선택 가능하도록 배열로 변경
+      selectedType: [],
       selectedOrder: '',
       startDate: '',
       endDate: '',
@@ -124,12 +125,27 @@ export default {
         { text: '3개월', value: '3months' },
         { text: '6개월', value: '6months' },
       ],
-      types: ['수입', '교통비', '식비', '통신', '쇼핑', '적금', '취미/여가', '기타'],
+      types: ['카페', '외식', '식비', '생필품', '공과금', '월급', '장학금', '기타'],
       orderOptions: [
         { text: '최신순', value: 'recent' },
         { text: '과거순', value: 'oldest' },
       ],
     };
+  },
+
+  mounted() {
+    const saved = localStorage.getItem('filterData');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      this.selectedPeriod = parsed.period || '';
+      this.selectedRange = parsed.range || '';
+      this.selectedType = Array.isArray(parsed.type) ? parsed.type : [];
+      this.selectedOrder = parsed.order || '';
+      this.startDate = parsed.startDate || '';
+      this.endDate = parsed.endDate || '';
+      this.minAmount = parsed.minAmount || '';
+      this.maxAmount = parsed.maxAmount || '';
+    }
   },
   methods: {
     toggleSelection(category, value) {
@@ -142,9 +158,9 @@ export default {
       if (category === 'type') {
         const index = this.selectedType.indexOf(value);
         if (index > -1) {
-          this.selectedType.splice(index, 1); // 선택 해제
+          this.selectedType.splice(index, 1);
         } else {
-          this.selectedType.push(value); // 선택 추가
+          this.selectedType.push(value);
         }
       }
       if (category === 'order') {
@@ -155,7 +171,7 @@ export default {
       const filterData = {
         period: this.selectedPeriod,
         range: this.selectedRange,
-        type: this.selectedType, // 배열로 저장됨
+        type: this.selectedType,
         order: this.selectedOrder,
         startDate: this.startDate,
         endDate: this.endDate,

@@ -40,7 +40,7 @@
           <li>카테고리</li>
           <li>수입/지출</li>
         </ul>
-        <Transaction :transactions="displayedTransactions" />
+        <FilteredTransaction :transactions="displayedTransactions" />
       </div>
     </section>
 
@@ -66,13 +66,13 @@
 
 <script>
 import Filter from '@/components/Filter.vue';
-import Transaction from './Transaction.vue';
+import FilteredTransaction from '@/components/FilteredTransaction.vue';
 
 export default {
   name: 'TransactionHistory',
   components: {
     Filter,
-    Transaction,
+    FilteredTransaction
   },
   data() {
     return {
