@@ -119,7 +119,7 @@
   
   <style scoped>
   .chart {
-    @apply h-64; /* 차트 높이를 조정 */
+    /* @apply h-64; 차트 높이를 조정 */
     width: 100%; /* 부모 요소에 맞춰 너비를 조정 */
     height: 100%; /* 부모 요소에 맞춰 높이를 조정 */
     display: flex;

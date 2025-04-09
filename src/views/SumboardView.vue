@@ -38,8 +38,8 @@ export default {
   flex-direction: row; /* 수입/지출을 좌우 배치 */
   background-color: #ffffff;
   border-radius: 50px;
-  width: 600px;
-  height: 180px;
+  width: 550px;
+  height: 137px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);

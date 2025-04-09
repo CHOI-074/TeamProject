@@ -3,10 +3,10 @@
   <div class="top5-box box-margin">
     <!-- 이번 달 가장 많이 소비한 카테고리 텍스트 -->
     <h2 class="top5-title">
-      이번달에는
+      이번 달 가장 많은 지출은
       <!-- 강조 텍스트: 카테고리명을 강조 -->
       <span class="highlight">{{ topCategoryName }}</span>
-      를 가장 많이 소비했어요
+      입니다!
     </h2>
 
     <!-- 차트 렌더링 영역 -->
