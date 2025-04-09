@@ -80,6 +80,7 @@
 <script>
 import { defineComponent, ref, watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'SignUp',
@@ -95,7 +96,6 @@ export default defineComponent({
     const idCheckPassed = ref(false)
     const router = useRouter()
 
-    // 아이디 입력값이 변경될 때 실행
     watch(
       () => form.userId,
       () => {
@@ -105,7 +105,6 @@ export default defineComponent({
       },
     )
 
-    // 아이디 중복 체크
     const handleCheckId = async () => {
       if (!form.userId.trim()) {
         errorMessage.value = '아이디를 입력해주세요.'
@@ -114,11 +113,9 @@ export default defineComponent({
       }
 
       try {
-        // db.json에서 users 테이블의 id와 사용자가 쓴 id와 같은 것을 찾음
-        const response = await fetch(`http://localhost:3000/users?userId=${form.userId}`)
-        const existingUsers = await response.json()
+        const { data } = await axios.get(`http://localhost:3000/users?userId=${form.userId}`)
 
-        if (existingUsers.length > 0) {
+        if (data.length > 0) {
           errorMessage.value = '이미 사용 중인 아이디입니다.'
           successMessage.value = ''
           idCheckPassed.value = false
@@ -135,7 +132,6 @@ export default defineComponent({
     }
 
     const handleSignup = async () => {
-      // 빈 칸 체크
       if (
         !form.username.trim() ||
         !form.userId.trim() ||
@@ -147,50 +143,37 @@ export default defineComponent({
         return
       }
 
-      // 비밀번호 길이 체크 (최소 8자)
       if (form.password.length < 8) {
         errorMessage.value = '비밀번호는 최소 8자 이상이어야 합니다.'
         successMessage.value = ''
         return
-      } else {
-        errorMessage.value = ''
       }
 
-      // 비밀번호 일치 여부 확인
       if (form.password !== form.passwordCheck) {
         errorMessage.value = '비밀번호가 일치하지 않습니다.'
         successMessage.value = ''
         return
       }
 
-      // 중복체크 확인 여부
-      if (idCheckPassed.value == false) {
+      if (!idCheckPassed.value) {
         errorMessage.value = '아이디 중복 체크를 해주세요.'
         successMessage.value = ''
         return
       }
 
       try {
-        // newUser에 로그인 폼에 쓴 정보들을 담아와서 db.json에 저장
         const newUser = {
           userId: form.userId,
           username: form.username,
           password: form.password,
         }
-        const response = await fetch('http://localhost:3000/users', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newUser),
-        })
 
-        if (response.ok) {
-          errorMessage.value = ''
-          successMessage.value = ''
-          alert('회원가입 완료. 로그인 페이지로 이동합니다.')
-          router.push('/')
-        } else {
-          errorMessage.value = '회원가입 실패: 서버 오류'
-        }
+        await axios.post('http://localhost:3000/users', newUser)
+
+        errorMessage.value = ''
+        successMessage.value = ''
+        alert('회원가입 완료. 로그인 페이지로 이동합니다.')
+        router.push('/')
       } catch (error) {
         errorMessage.value = '서버 오류로 회원가입 실패'
         console.error(error)
