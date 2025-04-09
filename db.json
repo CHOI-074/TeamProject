@@ -1,0 +1,334 @@
+{
+    "users": [
+      {
+        "id": "id123",
+        "username": "user1",
+        "password": "pass1",
+        "profileimImages": "http://localhost:3000/img/user1.jpg"
+      },
+      {
+        "id": "id12",
+        "username": "user2",
+        "password": "pass2",
+        "profileimImages": "http://localhost:3000/img/user2.jpg"
+      }
+    ],
+    "expense": [
+      {
+        "id": 1,
+        "userId": "id123",
+        "date": "2025-04-07",
+        "categoryId": 2,
+        "amount": 22000,
+        "memo": "마라탕"
+      },
+      {
+        "id": 5012,
+        "userId": "id123",
+        "date": "2025-02-25",
+        "categoryId": 10,
+        "amount": 27418,
+        "memo": "기타 소비"
+      },
+      {
+        "id": 2987,
+        "userId": "id123",
+        "date": "2025-03-02",
+        "categoryId": 3,
+        "amount": 71111,
+        "memo": "식비 소비"
+      },
+      {
+        "id": 7223,
+        "userId": "id123",
+        "date": "2025-02-28",
+        "categoryId": 4,
+        "amount": 47693,
+        "memo": "생필품 소비"
+      },
+      {
+        "id": 6626,
+        "userId": "id123",
+        "date": "2025-02-14",
+        "categoryId": 2,
+        "amount": 92373,
+        "memo": "외식 소비"
+      },
+      {
+        "id": 213,
+        "userId": "id123",
+        "date": "2025-02-24",
+        "categoryId": 4,
+        "amount": 1849,
+        "memo": "생필품 소비"
+      },
+      {
+        "id": 5013,
+        "userId": "id123",
+        "date": "2025-03-05",
+        "categoryId": 1,
+        "amount": 34786,
+        "memo": "카페 소비"
+      },
+      {
+        "id": 5014,
+        "userId": "id123",
+        "date": "2025-02-12",
+        "categoryId": 2,
+        "amount": 56239,
+        "memo": "외식 소비"
+      },
+      {
+        "id": 5015,
+        "userId": "id123",
+        "date": "2025-03-01",
+        "categoryId": 5,
+        "amount": 90000,
+        "memo": "공과금 지출"
+      },
+      {
+        "id": 5016,
+        "userId": "id123",
+        "date": "2025-03-10",
+        "categoryId": 4,
+        "amount": 12497,
+        "memo": "생필품 소비"
+      },
+      {
+        "id": 6001,
+        "userId": "id123",
+        "date": "2025-04-01",
+        "categoryId": 1,
+        "amount": 5800,
+        "memo": "카페 라떼"
+      },
+      {
+        "id": 6002,
+        "userId": "id123",
+        "date": "2025-04-02",
+        "categoryId": 2,
+        "amount": 18000,
+        "memo": "점심 외식"
+      },
+      {
+        "id": 6003,
+        "userId": "id123",
+        "date": "2025-04-03",
+        "categoryId": 3,
+        "amount": 40200,
+        "memo": "마트 장보기"
+      },
+      {
+        "id": 6004,
+        "userId": "id123",
+        "date": "2025-04-04",
+        "categoryId": 4,
+        "amount": 9500,
+        "memo": "화장지 구매"
+      },
+      {
+        "id": 6005,
+        "userId": "id123",
+        "date": "2025-04-05",
+        "categoryId": 5,
+        "amount": 87000,
+        "memo": "전기요금"
+      },
+      {
+        "id": 6006,
+        "userId": "id123",
+        "date": "2025-04-06",
+        "categoryId": 10,
+        "amount": 13200,
+        "memo": "기타 소비"
+      },
+      {
+        "id": 6007,
+        "userId": "id123",
+        "date": "2025-04-07",
+        "categoryId": 2,
+        "amount": 21000,
+        "memo": "저녁 외식"
+      },
+      {
+        "id": 6008,
+        "userId": "id123",
+        "date": "2025-04-08",
+        "categoryId": 3,
+        "amount": 32400,
+        "memo": "식비"
+      },
+      {
+        "id": 6009,
+        "userId": "id123",
+        "date": "2025-04-09",
+        "categoryId": 1,
+        "amount": 4600,
+        "memo": "카페 아메리카노"
+      },
+      {
+        "id": 6010,
+        "userId": "id123",
+        "date": "2025-04-10",
+        "categoryId": 4,
+        "amount": 12900,
+        "memo": "샴푸 구매"
+      }
+    ],
+    "income": [
+      {
+        "id": 1,
+        "userId": "id123",
+        "date": "2025-04-07",
+        "categoryId": 1,
+        "amount": 2800000
+      },
+      {
+        "id": 4467,
+        "userId": "id123",
+        "date": "2025-03-13",
+        "categoryId": 7,
+        "amount": 430633
+      },
+      {
+        "id": 9617,
+        "userId": "id123",
+        "date": "2025-02-17",
+        "categoryId": 6,
+        "amount": 1128667
+      },
+      {
+        "id": 8861,
+        "userId": "id123",
+        "date": "2025-02-24",
+        "categoryId": 10,
+        "amount": 1137811
+      },
+      {
+        "id": 6278,
+        "userId": "id123",
+        "date": "2025-02-06",
+        "categoryId": 6,
+        "amount": 1066145
+      },
+      {
+        "id": 6675,
+        "userId": "id123",
+        "date": "2025-02-02",
+        "categoryId": 8,
+        "amount": 277720
+      },
+      {
+        "id": 5017,
+        "userId": "id123",
+        "date": "2025-03-20",
+        "categoryId": 7,
+        "amount": 250000
+      },
+      {
+        "id": 5018,
+        "userId": "id123",
+        "date": "2025-03-15",
+        "categoryId": 6,
+        "amount": 2200000
+      },
+      {
+        "id": 5019,
+        "userId": "id123",
+        "date": "2025-02-28",
+        "categoryId": 9,
+        "amount": 150000
+      },
+      {
+        "id": 5020,
+        "userId": "id123",
+        "date": "2025-02-10",
+        "categoryId": 11,
+        "amount": 500000
+      },
+      {
+        "id": 7001,
+        "userId": "id123",
+        "date": "2025-04-01",
+        "categoryId": 6,
+        "amount": 2800000
+      },
+      {
+        "id": 7002,
+        "userId": "id123",
+        "date": "2025-04-02",
+        "categoryId": 7,
+        "amount": 450000
+      },
+      {
+        "id": 7003,
+        "userId": "id123",
+        "date": "2025-04-03",
+        "categoryId": 8,
+        "amount": 100000
+      },
+      {
+        "id": 7004,
+        "userId": "id123",
+        "date": "2025-04-04",
+        "categoryId": 6,
+        "amount": 1500000
+      },
+      {
+        "id": 7005,
+        "userId": "id123",
+        "date": "2025-04-05",
+        "categoryId": 9,
+        "amount": 200000
+      },
+      {
+        "id": 7006,
+        "userId": "id123",
+        "date": "2025-04-06",
+        "categoryId": 11,
+        "amount": 300000
+      },
+      {
+        "id": 7007,
+        "userId": "id123",
+        "date": "2025-04-07",
+        "categoryId": 7,
+        "amount": 600000
+      },
+      {
+        "id": 7008,
+        "userId": "id123",
+        "date": "2025-04-08",
+        "categoryId": 6,
+        "amount": 1000000
+      },
+      {
+        "id": 7009,
+        "userId": "id123",
+        "date": "2025-04-09",
+        "categoryId": 10,
+        "amount": 120000
+      },
+      {
+        "id": 7010,
+        "userId": "id123",
+        "date": "2025-04-10",
+        "categoryId": 9,
+        "amount": 180000
+      }
+    ],
+    "category": [
+      { "id": 1, "name": "카페", "type": "expense" },
+      { "id": 2, "name": "외식", "type": "expense" },
+      { "id": 3, "name": "식비", "type": "expense" },
+      { "id": 4, "name": "생필품", "type": "expense" },
+      { "id": 5, "name": "공과금", "type": "expense" },
+      { "id": 6, "name": "월급", "type": "income" },
+      { "id": 7, "name": "장학금", "type": "income" },
+      { "id": 8, "name": "세뱃돈", "type": "income" },
+      { "id": 9, "name": "용돈", "type": "income" },
+      { "id": 10, "name": "기타", "type": "expense" },
+      { "id": 11, "name": "기타", "type": "income" }
+    ]
+  }
+  

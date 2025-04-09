@@ -1,19 +1,21 @@
+<!-- App.vue -->
 <template>
-  <div id="app">
-    <h1 class="text-2xl font-bold text-center mb-4">필터링 기능</h1>
-    <!-- Filter 컴포넌트 불러오기 -->
-    <Filter />
+  <div>
+    <!-- 네비게이션 바 -->
+    <nav class="flex gap-4 p-4 bg-gray-200">
+      <router-link to="/" class="hover:underline">필터</router-link>
+      <router-link to="/dash" class="hover:underline">대시보드</router-link>
+      <router-link to="/sum" class="hover:underline">총합보드</router-link>
+    </nav>
+
+    <!-- 현재 라우터 경로에 맞는 컴포넌트를 여기에 렌더링 -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import Filter from './views/Filter.vue';
-
 export default {
   name: 'App',
-  components: {
-    Filter,
-  },
 };
 </script>
 
