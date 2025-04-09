@@ -36,4 +36,5 @@ export const useUserStore = defineStore(
 // 가져가서 쓸 때 사용법
 // import { useUserStore } from '@/stores/userStore'
 // const userStore = useUserStore()
-// userStore.id 또는 userStore.username
+// userStore.userId 또는 userStore.username
+
