@@ -106,16 +106,21 @@ import { useUserStore } from '@/stores/userStore'
 export default defineComponent({
   name: 'MyPage',
   setup() {
+     // Pinia 사용자 정보
     const userStore = useUserStore()
-    const currentUserId = userStore.userId
-    const userName = userStore.username
-    const showChangePasswordModal = ref(false)
-    const oldPassword = ref('')
-    const newPassword = ref('')
-    const newPasswordCheck = ref('')
-    const errorMessage = ref('')
+    const currentUserId = userStore.userId // 현재 로그인한 사용자의 ID
+    const userName = userStore.username    // 현재 로그인한 사용자의 이름
+
+    // 모달 상태 및 입력값 관리
+    const showChangePasswordModal = ref(false) // 비밀번호 변경 모달 표시 여부
+    const oldPassword = ref('')                // 현재 비밀번호
+    const newPassword = ref('')                // 새 비밀번호 
+    const newPasswordCheck = ref('')           // 새 비밀번호 확인
+    const errorMessage = ref('')               // 오류 메시지
+
     const router = useRouter()
 
+    // 모달 닫기 및 입력값 초기화 함수
     const closeModal = () => {
       oldPassword.value = ''
       newPassword.value = ''
@@ -123,14 +128,17 @@ export default defineComponent({
       showChangePasswordModal.value = false
     }
 
+    // 비밀번호 변경 처리 함수
     const handleChangePassword = async () => {
       try {
+        // userId가 같은 사용자 정보 가져오기
         const { data } = await axios.get(`http://localhost:3000/users`, {
           params: { userId: currentUserId },
         })
 
         const user = data[0]
 
+        
         if (!user) {
           alert('사용자를 찾을 수 없습니다.')
           return
@@ -151,6 +159,7 @@ export default defineComponent({
           return
         }
 
+        // 비밀번호 업데이트 요청
         await axios.patch(`http://localhost:3000/users/${user.id}`, {
           password: newPassword.value,
         })
@@ -163,8 +172,9 @@ export default defineComponent({
       }
     }
 
+    // 로그아웃 처리 함수
     const handlerLogOut = () => {
-      localStorage.clear()
+      userStore.clearUser() 
       router.push('/')
     }
 
