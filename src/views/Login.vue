@@ -76,7 +76,7 @@ export default defineComponent({
 
         if (user) {
           // Pinia에 로그인한 유저 정보 저장
-          userStore.setUser({ userId: user.userId, username: user.username })
+          userStore.setUser({ id: user.id, userId: user.userId, username: user.username })
 
           alert('로그인 성공')
           router.push('/main')
