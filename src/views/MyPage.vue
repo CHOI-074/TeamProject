@@ -100,14 +100,15 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 import { useUserStore } from '@/stores/userStore'
 
 export default defineComponent({
   name: 'MyPage',
   setup() {
     const userStore = useUserStore()
-    const currentUserId = userStore.userId //pinia userStore에서 유저 정보 가져오기
-    const userName = userStore.username //pinia userStore에서 유저 정보 가져오기
+    const currentUserId = userStore.userId
+    const userName = userStore.username
     const showChangePasswordModal = ref(false)
     const oldPassword = ref('')
     const newPassword = ref('')
@@ -124,53 +125,45 @@ export default defineComponent({
 
     const handleChangePassword = async () => {
       try {
-        const response = await fetch('http://localhost:3000/users')
-        if (!response.ok) throw new Error('서버 응답 오류')
-
-        const data = await response.json()
-
-        // db.json에서 현재 사용자 찾기
-        const user = data.find((u) => String(u.userId) === String(currentUserId))
-
-        if (!user) {
-          alert(`user가 존재하지 않습니다.`)
-          return
-        }
-        // 현재 비밀번호 일치 확인
-        if (user.password !== oldPassword.value) {
-          alert(`현재 비밀번호가 일치하지 않습니다.`)
-          return
-        }
-
-        // 비밀번호 길이 체크 (최소 8자)
-        if (newPassword.value.length < 8) {
-          alert(`비밀번호는 최소 8자 이상이어야 합니다.`)
-          return
-        }
-
-        // 새 비밀번호 일치 확인
-        if (newPassword.value != newPasswordCheck.value) {
-          alert(`비밀번호가 일치하지 않습니다.`)
-          return
-        }
-
-        // 비밀번호 변경 요청
-        await fetch(`http://localhost:3000/users/${user.id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password: newPassword.value }),
+        const { data } = await axios.get(`http://localhost:3000/users`, {
+          params: { userId: currentUserId },
         })
 
-        alert(`비밀번호를 변경했습니다.`)
-        showChangePasswordModal.value = false
+        const user = data[0]
+
+        if (!user) {
+          alert('사용자를 찾을 수 없습니다.')
+          return
+        }
+
+        if (user.password !== oldPassword.value) {
+          alert('현재 비밀번호가 일치하지 않습니다.')
+          return
+        }
+
+        if (newPassword.value.length < 8) {
+          alert('비밀번호는 최소 8자 이상이어야 합니다.')
+          return
+        }
+
+        if (newPassword.value !== newPasswordCheck.value) {
+          alert('새 비밀번호가 일치하지 않습니다.')
+          return
+        }
+
+        await axios.patch(`http://localhost:3000/users/${user.id}`, {
+          password: newPassword.value,
+        })
+
+        alert('비밀번호가 성공적으로 변경되었습니다.')
         closeModal()
       } catch (error) {
-        errorMessage.value = '로그인 오류: 서버 문제'
+        errorMessage.value = '비밀번호 변경 중 오류가 발생했습니다.'
         console.error(error)
       }
     }
 
-    const handlerLogOut = async () => {
+    const handlerLogOut = () => {
       localStorage.clear()
       router.push('/')
     }
