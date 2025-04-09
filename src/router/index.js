@@ -1,23 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/Home.vue';
-import Transaction from '@/views/Transaction.vue';
+import Transaction from '@/components/Transaction.vue';
 
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: Transaction,
     children: [
       {
         path: 'transactions',
-        component: Transaction
-      }
-    ]
-  }
+        component: Transaction,
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;

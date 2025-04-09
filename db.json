@@ -58,5 +58,19 @@
     { "id": 9, "name": "용돈", "type": "income" },
     { "id": 10, "name": "기타", "type": "expense" },
     { "id": 11, "name": "기타", "type": "income" }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "date": "2025-04-07",
+      "category": "식비",
+      "amount": "-15000"
+    },
+    {
+      "id": 2,
+      "date": "2025-04-07",
+      "category": "월급",
+      "amount": "+2800000"
+    }
   ]
 }

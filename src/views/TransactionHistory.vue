@@ -63,7 +63,8 @@
 
 <script>
 import Filter from '@/components/Filter.vue';
-import Transaction from './Transaction.vue';
+import Transaction from '@/components/Transaction.vue';
+
 export default {
   name: 'TransactionHistory',
   components: {
