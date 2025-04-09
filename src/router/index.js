@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Filter from '@/views/Filter.vue';
 import DashboardView from '../views/DashboardView.vue';
-// import SumboardView from '@/views/SumboardView.vue';
+import SumboardView from '../views/SumboardView.vue';
 
 const routes = [
   {
@@ -14,11 +14,11 @@ const routes = [
     name: 'Dashboard',
     component: DashboardView,
   },
-  // {
-  //   path: '/sum', // "/sum" 경로로 이동 시 SumboardView를 보여줌
-  //   name: 'Sumboard',
-  //   component: SumboardView,
-  // },
+  {
+    path: '/sum', // "/sum" 경로로 이동 시 SumboardView를 보여줌
+    name: 'Sumboard',
+    component: SumboardView,
+  },
 ];
 
 const router = createRouter({
