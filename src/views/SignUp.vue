@@ -87,9 +87,12 @@ export default defineComponent({
     const idCheckPassed = ref(false)
     const router = useRouter()
 
-    // 아이디가 바뀔 때 상태 초기화
+    // 아이디 입력값이 변경될 때 실행
     watch(id, () => {
       idCheckPassed.value = false
+      if (errorMessage.value === '사용 가능한 아이디입니다.') {
+        errorMessage.value = ''
+      }
     })
 
     // 아이디 중복 체크
