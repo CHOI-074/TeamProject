@@ -5,7 +5,7 @@
       class="w-full max-w-sm bg-white p-6 rounded-xl shadow-lg sm:max-w-md md:max-w-lg lg:max-w-1xl"
     >
       <div class="flex justify-center mb-6">
-        <img class="h-50 w-auto rounded-lg" src="/src/assets/logo.png" alt="logo" />
+        <img class="h-50 w-auto rounded-lg" src="./img/logo.png" alt="logo" />
       </div>
 
       <!-- 로그인 텍스트 -->
@@ -13,7 +13,7 @@
 
       <!-- 아이디 입력 -->
       <input
-        v-model="id"
+        v-model="userId"
         type="text"
         placeholder="아이디"
         class="mb-4 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -59,7 +59,7 @@ import { useUserStore } from '@/stores/userStore'
 export default defineComponent({
   name: 'LoginPage',
   setup() {
-    const id = ref('')
+    const userId = ref('')
     const password = ref('')
     const errorMessage = ref('')
     const router = useRouter()
@@ -71,15 +71,16 @@ export default defineComponent({
         if (!response.ok) throw new Error('서버 응답 오류')
 
         const data = await response.json()
-        const user = data.find((u) => u.id === id.value && u.password === password.value)
+
+        const user = data.find((u) => u.userId === userId.value && u.password === password.value)
 
         if (user) {
           // Pinia에 로그인한 유저 정보 저장
-          userStore.setUser({ id: user.id, username: user.username })
+          userStore.setUser({ userId: user.userId, username: user.username })
 
           alert('로그인 성공')
           router.push('/main')
-        } else if (!id.value || !password.value) {
+        } else if (!userId.value || !password.value) {
           errorMessage.value = '아이디 또는 비밀번호를 입력해주세요.'
         } else {
           errorMessage.value = '아이디 또는 비밀번호가 잘못되었습니다.'
@@ -90,7 +91,7 @@ export default defineComponent({
       }
     }
 
-    return { id, password, errorMessage, handleLogin }
+    return { userId, password, errorMessage, handleLogin }
   },
 })
 </script>

@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "346534",
+      "userId":"id123",
+      "username": "user1",
+      "password": "pass1",
+      "profileimImages": "http://localhost:3000/img/user1.jpg"
+    },
+    {
+      "id": "32424",
+      "userId":"id1ef23",
+      "username": "user2",
+      "password": "pass2",
+      "profileimImages": "http://localhost:3000/img/user2.jpg"
+    }
+  ]
+}
