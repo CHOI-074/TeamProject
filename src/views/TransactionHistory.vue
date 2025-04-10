@@ -1,17 +1,11 @@
-<template class="bg-[#F5F7FA]">
+<template>
   <div class="container mx-auto p-4 pb-32">
-    <!-- 필터 버튼 (필터가 열리게 하는 버튼) -->
-    <button @click="isModalOpen = true">필터 열기</button>
-
-    <!-- 필터 모달 -->
-    <Filter v-if="isModalOpen" @close="isModalOpen = false" />
-
-    <!-- 메인 섹션 내용 -->
-    <section class="w-full min-h-screen p-8">
+    <!-- 메인 section: 배경색 #F5F7FA, 상하 패딩 늘림 -->
+    <section class="w-full min-h-screen bg-[#F5F7FA] p-8">
       <!-- 날짜 필터링 및 작성 버튼 영역 -->
       <div class="flex justify-between mb-4 space-x-2">
         <button
-          @click="showModal = true"
+          @click="isModalOpen = true"
           class="flex items-center justify-between flex-1 bg-transparent border border-gray-300 rounded-full px-4 py-2 text-gray-600 shadow-sm"
         >
           <span
@@ -32,7 +26,7 @@
         </button>
       </div>
 
-      <!-- 리스트 영역 -->
+      <!-- 리스트 영역: 흰색 박스 -->
       <div class="bg-white p-4 rounded-3xl shadow-lg">
         <!-- 리스트 헤더 -->
         <ul
@@ -42,11 +36,14 @@
           <li>카테고리</li>
           <li>수입/지출</li>
         </ul>
-        <Transaction />
+        <FilteredTransaction :transactions="displayedTransactions" />
       </div>
     </section>
 
-    <!-- 하단 고정 영역: '더보기' 버튼과 총액 표시 -->
+    <!-- 모달 -->
+    <Filter v-if="isModalOpen" @close="isModalOpen = false" />
+
+    <!-- 하단 고정 영역: '더보기' 버튼과 총액 표시, 상하 간격 늘림 -->
     <div class="fixed bottom-0 left-0 w-full">
       <div
         v-if="visibleCount < transactions.length"
@@ -69,36 +66,37 @@
 </template>
 
 <script>
-// 필터와 거래내역 컴포넌트 불러오기
 import Filter from '@/components/Filter.vue';
-import Transaction from '@/components/Transaction.vue';
+import FilteredTransaction from '@/components/FilteredTransaction.vue';
 
 export default {
   name: 'TransactionHistory',
   components: {
     Filter,
-    Transaction,
+    FilteredTransaction,
   },
   data() {
     return {
-      showModal: false,
-      isModalOpen: false,
-      transactions: [],
-      visibleCount: 6,
+      isModalOpen: false, // 모달 상태 관리
+      transactions: [], // 거래 내역 데이터
+      visibleCount: 6, // 처음 보이는 항목 개수
     };
   },
   computed: {
     displayedTransactions() {
+      // 최근 날짜 순으로 내림차순 정렬 후 visibleCount 만큼 자르기
       return this.transactions
         .slice()
         .sort((a, b) => b.date.localeCompare(a.date))
         .slice(0, this.visibleCount);
     },
     totalAmount() {
-      return this.transactions.reduce((sum, item) => sum + Number(item.amount), 0);
+      return this.transactions.reduce((sum, item) => {
+        return sum + Number(item.amount);
+      }, 0);
     },
     totalAmountFormatted() {
-      return this.totalAmount.toLocaleString();
+      return (this.totalAmount || 0).toLocaleString();
     },
   },
   methods: {

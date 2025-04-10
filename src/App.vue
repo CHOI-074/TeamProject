@@ -1,3 +1,10 @@
+<script setup>
+import FilteredTransaction from './components/FilteredTransaction.vue';
+import TransactionHistory from './views/TransactionHistory.vue';
+import Header from './components/Header.vue';
+import Navigation from './components/Navigation.vue';
+</script>
+
 <template>
   <div id="app">
     <!-- 라우터를 통해 페이지가 바뀌도록 설정 -->
