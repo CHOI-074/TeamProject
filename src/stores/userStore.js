@@ -7,27 +7,27 @@ export const useUserStore = defineStore(
     const id = ref('')
     const userId = ref('')
     const username = ref('')
-    // const profileimImages = ref('')
+    const profileImage = ref('')
 
     function setUser(userData) {
       id.value = userData.id
       userId.value = userData.userId
       username.value = userData.username
-      // profileimImages.value = userData.profileimImages || ''
+      profileImage.value = userData.profileImage
     }
 
     function clearUser() {
       id.value = ''
       userId.value = ''
       username.value = ''
-      // profileimImages.value = ''
+      profileImage.value = ''
     }
 
     return {
       id,
       userId,
       username,
-      // profileimImages,
+      profileImage,
       setUser,
       clearUser,
     }

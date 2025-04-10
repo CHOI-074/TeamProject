@@ -1,15 +1,26 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen px-4">
-    <form
-      @submit.prevent="handleLogin"
-      class="w-full max-w-sm bg-white p-6 rounded-xl shadow-lg sm:max-w-md md:max-w-lg lg:max-w-1xl"
-    >
-      <div class="flex justify-center mb-6">
-        <img class="h-50 w-auto rounded-lg" src="./img/logo.png" alt="logo" />
+  <div
+    class="flex flex-col items-center justify-center min-h-screen px-4 py-6 -mt-4 max-w-md mx-auto"
+  >
+    <form @submit.prevent="handleLogin" class="w-full bg-white p-6 rounded-xl">
+      <div class="flex flex-col items-center justify-center">
+        <img class="h-40 w-auto rounded-lg" src="@/assets/logo.png" alt="logo" />
       </div>
 
       <!-- 로그인 텍스트 -->
-      <h3 class="text-3xl font-semibold text-left mb-6">로그인</h3>
+      <!-- <h3 class="text-3xl font-semibold text-left mb-6">로그인</h3> -->
+
+      <!-- <div class="flex justify-start -mt-8 -ml-10">
+        <img class="h-40 w-auto rounded-lg" src="./img/login.png" alt="login" />
+      </div> -->
+
+      <div class="flex flex-col items-center justify-center -mt-12 -mb-3">
+        <img class="h-60 w-auto rounded-lg" src="@/assets/login.png" alt="login" />
+      </div>
+
+      <!-- <div class="flex justify-start -mt-12 ml-15">
+        <img class="h-45 w-auto rounded-lg" src="./img/login.png" alt="login" />
+      </div> -->
 
       <!-- 아이디 입력 -->
       <input
@@ -30,7 +41,7 @@
       <!-- 로그인 버튼 -->
       <button
         type="submit"
-        class="mb-3 w-full py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition duration-300"
+        class="mb-3 w-full py-2 bg-blue-500 text-black font-medium rounded-md transition duration-300"
       >
         로그인
       </button>
@@ -43,7 +54,7 @@
       <!-- 회원가입 안내 -->
       <div class="mt-6 text-center">
         <p class="text-sm">처음 오셨나요?</p>
-        <router-link to="/signup" class="text-blue-600 hover:underline text-sm"
+        <router-link to="/signUp" class="text-[rgb(96,88,76)] hover:underline text-sm"
           >회원가입</router-link
         >
       </div>
@@ -86,9 +97,10 @@ export default defineComponent({
             id: user.id,
             userId: user.userId,
             username: user.username,
+            profileImage: 'kirby1',
           })
           alert('로그인 성공')
-          router.push('/main')
+          router.push('/transaction-history')
         } else {
           // 일치하는 사용자가 없는 경우 에러 메시지 표시
           errorMessage.value = '아이디 또는 비밀번호가 잘못되었습니다.'
