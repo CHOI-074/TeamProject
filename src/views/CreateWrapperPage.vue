@@ -22,7 +22,9 @@ function toggleType(type) {
 </script>
 
 <template>
-  <div class="CreateWrapperPage max-w-md mx-auto px-4 py-6">
+  <div
+    class="CreateWrapperPage w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-4 md:px-8 lg:px-16 py-6"
+  >
     <img
       v-if="currentType === 'income'"
       :src="incomeImg"
@@ -37,7 +39,6 @@ function toggleType(type) {
     />
 
     <TypeSwitch :modelValue="currentType" @update:modelValue="toggleType" />
-
     <component
       :is="currentType === 'income' ? IncomeCreatePage : ExpenseCreatePage"
       :key="`${currentType}-${route.path}`"
