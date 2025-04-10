@@ -46,21 +46,6 @@
 
     <!-- 모달 -->
     <Filter v-if="isModalOpen" @close="isModalOpen = false" />
-
-    <!-- 하단 고정 영역: '더보기' 버튼과 총액 표시, 상하 간격 늘림 -->
-    <div class="fixed bottom-0 left-0 w-full">
-      <div v-if="visibleCount < transactions.length" class="flex justify-center px-4 mb-4">
-        <button
-          @click="loadMore"
-          class="bg-blue-500 text-white py-3 px-6 rounded-full text-xl transition duration-150 ease-in-out transform hover:bg-blue-600 active:scale-95"
-        >
-          더보기
-        </button>
-      </div>
-      <div class="bg-white border-t border-gray-300 pt-6 pb-8 text-center font-bold text-2xl">
-        총액: {{ totalAmountFormatted }}
-      </div>
-    </div>
   </div>
 </template>
 
@@ -72,7 +57,7 @@ export default {
   name: 'TransactionHistory',
   components: {
     Filter,
-    FilteredTransaction
+    FilteredTransaction,
   },
   data() {
     return {

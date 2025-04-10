@@ -6,7 +6,7 @@
     <!-- 조건에 맞는 거래 내역 출력 -->
     <ul v-else>
       <li
-        v-for="item in filtered"
+        v-for="item in displayedItems"
         :key="item.id"
         class="flex justify-around py-2 border-b border-gray-200 last:border-0"
       >
@@ -21,6 +21,30 @@
         </span>
       </li>
     </ul>
+
+    <!-- 더보기 버튼 -->
+    <div v-if="filtered.length > displayLimit" class="text-center py-3">
+      <button @click="loadMore" class="px-4 py-2 text-blue-500 border border-white rounded hover:bg-blue-50 transition">
+        MORE (+{{ filtered.length - displayLimit }})
+      </button>
+    </div>
+
+    <!-- 총액 표시 영역 -->
+    <div class="total-amount-section py-3 border-t border-gray-300 mt-4">
+      <div class="flex justify-between px-4">
+        <span class="font-semibold">총액:</span>
+        <span
+          class="font-bold"
+          :class="{
+            'text-[#34C759]': totalAmount > 0,
+            'text-[#FF3B30]': totalAmount < 0,
+            'text-gray-700': totalAmount === 0,
+          }"
+        >
+          {{ totalAmount.toLocaleString() }}원
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,6 +68,9 @@ export default {
       currentUserId: 'id123', // 현재 로그인한 사용자 ID
       lastFilterData: '', // 마지막으로 불러온 필터 상태 (변경 감지용)
       filterCheckTimer: null, // 필터 감시 타이머 핸들
+      initialItemCount: 7, // 처음에 보여줄 아이템 개수
+      loadMoreIncrement: 5, // 더보기 버튼 클릭시 추가할 아이템 개수
+      displayLimit: 7, // 현재 화면에 표시할 아이템 수 제한
     };
   },
   computed: {
@@ -100,16 +127,52 @@ export default {
           return this.filter.order === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date);
         });
     },
+
+    // 화면에 실제로 표시될 아이템 목록
+    displayedItems() {
+      return this.filtered.slice(0, this.displayLimit);
+    },
+
+    // 필터링된 거래 내역의 총액 계산
+    totalAmount() {
+      // 필터링된 거래 내역의 총액을 계산
+      return this.filtered.reduce((sum, item) => sum + Number(item.amount), 0);
+    },
   },
   mounted() {
     this.loadFilter(); // 로컬스토리지에서 필터 불러오기
     this.loadData(); // 수입/지출/카테고리 데이터 불러오기
     this.startWatchingFilterChange(); // 필터 변경 감지 시작
+    this.resetPagination(); // 페이지네이션 초기화
   },
   beforeUnmount() {
     clearInterval(this.filterCheckTimer); // 컴포넌트 제거 시 타이머 제거
   },
+  watch: {
+    // 필터 변경 시 페이지네이션 리셋
+    filter: {
+      handler() {
+        this.resetPagination();
+      },
+      deep: true,
+    },
+  },
   methods: {
+    // 더보기 버튼 클릭 시 표시 항목 증가
+    loadMore() {
+      this.displayLimit += this.loadMoreIncrement;
+
+      // 전체 항목보다 표시 항목이 많아지지 않도록 제한
+      if (this.displayLimit > this.filtered.length) {
+        this.displayLimit = this.filtered.length;
+      }
+    },
+
+    // 페이지네이션 초기 상태로 리셋
+    resetPagination() {
+      this.displayLimit = this.initialItemCount;
+    },
+
     // 로컬스토리지에서 최신 필터 불러오기
     loadFilter() {
       const saved = localStorage.getItem('filterData');
@@ -157,5 +220,12 @@ export default {
 ul {
   list-style: none;
   padding: 0;
+}
+
+.total-amount-section {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); */
 }
 </style>
