@@ -190,7 +190,17 @@ export default {
   methods: {
     // 클릭 시 편집 페이지로 이동
     goToWrite(item) {
-      this.$router.push({ name: 'EditRecord', params: {id: item.id} );
+      const amount = Number(item.amount);
+      const type = amount > 0 ? 'income' : 'expense';
+
+      this.$router.push({
+        name: 'EditRecord',
+        params: { id: item.id },
+        query: {
+          amount,
+          type,
+        },
+      });
     },
     // 로컬스토리지에서 필터 불러오기
     loadFilter() {

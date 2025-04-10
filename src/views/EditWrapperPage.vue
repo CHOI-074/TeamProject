@@ -16,7 +16,6 @@ watch(
   () => route.query.type,
   (val) => {
     currentType.value = val || 'income';
-    console.log(currentType.value);
   },
   { immediate: true }
 );
