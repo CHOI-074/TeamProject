@@ -7,12 +7,13 @@ import SignUp from '@/views/SignUp.vue';
 import Login from '@/views/Login.vue';
 import MyPage from '@/views/MyPage.vue';
 import TransactionHistory from '@/views/TransactionHistory.vue';
+import AnalyzeView from '@/views/AnalyzeView.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Login, // 🟡 기본 루트로 진입 시 로그인 페이지
+    component: Login,
   },
   {
     path: '/login',
@@ -45,13 +46,18 @@ const routes = [
     component: MyPage,
   },
   {
+    path: '/analyzeview',
+    name: 'analyzeview',
+    component: AnalyzeView,
+  },
+  {
     path: '/not-found',
     name: 'NotFoundPage',
     component: NotFoundPage,
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/not-found', // 잘못된 경로는 not-found로 이동
+    redirect: '/not-found',
   },
 ];
 

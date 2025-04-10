@@ -1,0 +1,47 @@
+<template>
+  <div class="container mx-auto p-4 pb-32">
+    <Header />
+    <Navigation />
+    <div class="analyze-container">
+      <!-- <div class="px-4 py-6 max-w-md w-full mx-auto"></div> -->
+      <!-- 대시보드 컴포넌트 -->
+      <DashboardView />
+
+      <!-- 가장 많이 소비한 카테고리 차트 컴포넌트 -->
+      <Top5Chart />
+
+      <!-- 수입/지출 합산 컴포넌트 -->
+      <SumboardView />
+    </div>
+  </div>
+</template>
+
+<script>
+// 각 컴포넌트들을 임포트합니다.
+import DashboardView from '../views/DashboardView.vue';
+import SumboardView from '../views/SumboardView.vue';
+import Top5Chart from '../components/charts/Top5Chart.vue';
+import Header from '@/components/Header.vue';
+import Navigation from '@/components/Navigation.vue';
+
+export default {
+  name: 'AnalyzeView', // 컴포넌트 이름
+  components: {
+    DashboardView, // 대시보드 컴포넌트
+    SumboardView, // 수입/지출 합산 컴포넌트
+    Top5Chart, // 상위 5개 소비 카테고리 차트
+    Header,
+    Navigation,
+  },
+};
+</script>
+
+<style scoped>
+/* AnalyzeView 기본 스타일 */
+.analyze-container {
+  display: flex;
+  flex-direction: column; /* 세로로 컴포넌트들을 배치 */
+  align-items: center; /* 중앙 정렬 */
+  margin: 20px 0; /* 위아래 여백 */
+}
+</style>

@@ -18,11 +18,20 @@
 
     <button
       class="bg-blue-600 hover:bg-blue-700 text-white text-base font-medium px-12 py-3 rounded-full shadow-md transition duration-300"
-      @click="goHome"
+      @click="goToTransactionHistory"
     >
       확인
     </button>
   </div>
 </template>
 
-<script setup></script>
+<script>
+export default {
+  name: 'NotFoundPadge',
+  methods: {
+    goToTransactionHistory() {
+      this.$router.push('/transaction-history');
+    },
+  },
+};
+</script>

@@ -10,11 +10,11 @@
           @click="isModalOpen = true"
           class="flex items-center justify-between flex-1 bg-transparent border border-gray-300 rounded-full px-4 py-2 text-gray-600 shadow-sm"
         >
-          <span>&nbsp;&nbsp;최근&nbsp;&nbsp;/&nbsp;&nbsp;전체&nbsp;&nbsp;/&nbsp;&nbsp;최신순</span>
           <img src="@/assets/list.png" alt="list icon" class="w-4 h-4 mr-2 transform scale-110" />
+          <span class="ml-auto">&nbsp;&nbsp;상세조건&nbsp;&nbsp;</span>
         </button>
 
-        <button class="flex items-center bg-[#1B1F42] text-white py-2 px-3 rounded-full">
+        <button class="flex items-center bg-[#1B1F42] text-white py-2 px-3 rounded-full" @click="goToCreate">
           <img src="@/assets/pen.png" alt="pen icon" class="w-4 h-4 mr-2" />
           작성
         </button>
@@ -36,19 +36,6 @@
     <Filter v-if="isModalOpen" @close="isModalOpen = false" />
 
     <!-- 하단 고정 영역: '더보기' 버튼과 총액 표시, 상하 간격 늘림 -->
-    <div class="fixed bottom-0 left-0 w-full">
-      <div v-if="visibleCount < transactions.length" class="flex justify-center px-4 mb-4">
-        <button
-          @click="loadMore"
-          class="bg-blue-500 text-white py-3 px-6 rounded-full text-xl transition duration-150 ease-in-out transform hover:bg-blue-600 active:scale-95"
-        >
-          더보기
-        </button>
-      </div>
-      <div class="bg-white border-t border-gray-300 pt-6 pb-8 text-center font-bold text-2xl">
-        총액: {{ totalAmountFormatted }}
-      </div>
-    </div>
   </div>
 </template>
 
@@ -93,6 +80,9 @@ export default {
   methods: {
     loadMore() {
       this.visibleCount += 10;
+    },
+    goToCreate() {
+      this.$router.push('/record/create');
     },
   },
 };

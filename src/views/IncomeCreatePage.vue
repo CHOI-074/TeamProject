@@ -40,7 +40,7 @@ async function save() {
     ...form.value,
     userId: userStore.userId,
   });
-  router.push('/');
+  router.push('/transaction-history');
 }
 </script>
 
