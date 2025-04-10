@@ -53,8 +53,6 @@
 <script>
 import Filter from '@/components/Filter.vue';
 import FilteredTransaction from '@/components/FilteredTransaction.vue';
-import Navigation from '@/components/Navigation.vue';
-import Header from '@/components/Header.vue';
 
 export default {
   name: 'TransactionHistory',

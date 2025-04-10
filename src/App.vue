@@ -1,29 +1,18 @@
-<script setup></script>
+<script setup>
+import FilteredTransaction from './components/FilteredTransaction.vue';
+import TransactionHistory from './views/TransactionHistory.vue';
+import Header from './components/Header.vue';
+import Navigation from './components/Navigation.vue';
+</script>
 
 <template>
   <div id="app">
     <Header />
     <Navigation />
+
     <router-view />
   </div>
 </template>
-
-<script>
-import FilteredTransaction from './components/FilteredTransaction.vue';
-import TransactionHistory from './views/TransactionHistory.vue';
-import Header from './components/Header.vue';
-import Navigation from './components/Navigation.vue';
-
-export default {
-  name: 'App',
-  components: {
-    TransactionHistory,
-    FilteredTransaction,
-    Header,
-    Navigation,
-  },
-};
-</script>
 
 <style>
 body {
