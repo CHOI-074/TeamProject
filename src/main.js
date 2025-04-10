@@ -1,17 +1,18 @@
-// main.js
-import './assets/index.css';
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router'; // Vue Router
+import { createPinia } from 'pinia'; // Pinia
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import App from './App.vue'
-import router from './router'
+import './assets/main.css'; // tailwinds 관련 설정
 
-const app = createApp(App)
+const app = createApp(App);
 const pinia = createPinia()
 
 // 플러그인 등록
 pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia)
-app.use(router)
-app.mount('#app')
+app.use(router); // 라우팅
+
+app.mount('#app');
+
