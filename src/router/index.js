@@ -6,6 +6,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'main',
+    //   component: MainPage,
+    // },
     {
       path: '/record/create',
       name: 'createWrapperPage',
@@ -16,6 +21,11 @@ const router = createRouter({
       name: 'editWrapperPage',
       component: EditWrapperPage,
     },
+    // {
+    //   path: '/not-found',
+    //   name: 'notFound',
+    //   component: NotFound,
+    // },
   ],
 });
 

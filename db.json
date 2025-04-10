@@ -44,19 +44,71 @@
       "date": "2025-02-07",
       "categoryId": 11,
       "amount": 2300000
+    },
+    {
+      "id": "5ba1",
+      "date": "2025-04-01",
+      "amount": 4000000,
+      "categoryId": 8,
+      "memo": "수입",
+      "userId": ""
     }
   ],
   "category": [
-    { "id": 1, "name": "카페", "type": "expense" },
-    { "id": 2, "name": "외식", "type": "expense" },
-    { "id": 3, "name": "식비", "type": "expense" },
-    { "id": 4, "name": "생필품", "type": "expense" },
-    { "id": 5, "name": "공과금", "type": "expense" },
-    { "id": 6, "name": "월급", "type": "income" },
-    { "id": 7, "name": "장학금", "type": "income" },
-    { "id": 8, "name": "세뱃돈", "type": "income" },
-    { "id": 9, "name": "용돈", "type": "income" },
-    { "id": 10, "name": "기타", "type": "expense" },
-    { "id": 11, "name": "기타", "type": "income" }
+    {
+      "id": 1,
+      "name": "카페",
+      "type": "expense"
+    },
+    {
+      "id": 2,
+      "name": "외식",
+      "type": "expense"
+    },
+    {
+      "id": 3,
+      "name": "식비",
+      "type": "expense"
+    },
+    {
+      "id": 4,
+      "name": "생필품",
+      "type": "expense"
+    },
+    {
+      "id": 5,
+      "name": "공과금",
+      "type": "expense"
+    },
+    {
+      "id": 6,
+      "name": "월급",
+      "type": "income"
+    },
+    {
+      "id": 7,
+      "name": "장학금",
+      "type": "income"
+    },
+    {
+      "id": 8,
+      "name": "세뱃돈",
+      "type": "income"
+    },
+    {
+      "id": 9,
+      "name": "용돈",
+      "type": "income"
+    },
+    {
+      "id": 10,
+      "name": "기타",
+      "type": "expense"
+    },
+    {
+      "id": 11,
+      "name": "기타",
+      "type": "income"
+    }
   ]
 }
