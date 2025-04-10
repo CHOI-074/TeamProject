@@ -47,6 +47,20 @@
       "userId": "ckddus1541",
       "username": "홍길동",
       "password": "chlckddus1",
+      "profileImage": "kirby3"
+    },
+    {
+      "id": "3b86",
+      "userId": "qoralstjs",
+      "username": "김철상",
+      "password": "qoralstjs1",
+      "profileImage": "kirby3"
+    },
+    {
+      "id": "6d59",
+      "userId": "www",
+      "username": "김민수",
+      "password": "wwwwwwww",
       "profileImage": "kirby1"
     }
   ],
@@ -98,6 +112,14 @@
       "categoryId": 3,
       "memo": "",
       "userId": "ckddus1541"
+    },
+    {
+      "id": "bf29",
+      "date": "2025-04-07",
+      "amount": 10000000,
+      "categoryId": 1,
+      "memo": "",
+      "userId": "www"
     }
   ],
   "income": [
@@ -233,6 +255,30 @@
       "categoryId": 6,
       "memo": "",
       "userId": "ckddus1541"
+    },
+    {
+      "id": "a7bb",
+      "date": "2025-04-10",
+      "amount": 200000,
+      "categoryId": 8,
+      "memo": "설날 ",
+      "userId": "qoralstjs"
+    },
+    {
+      "id": "06ba",
+      "date": "2025-04-09",
+      "amount": 2000,
+      "categoryId": 11,
+      "memo": "",
+      "userId": "qoralstjs"
+    },
+    {
+      "id": "a37a",
+      "date": "2025-04-09",
+      "amount": 1000000,
+      "categoryId": 6,
+      "memo": "",
+      "userId": "www"
     }
   ],
   "category": [
@@ -311,5 +357,18 @@
       "category": "교통",
       "amount": "-4500"
     }
+  ],
+  "category": [
+    { "id": 1, "name": "카페", "type": "expense" },
+    { "id": 2, "name": "외식", "type": "expense" },
+    { "id": 3, "name": "식비", "type": "expense" },
+    { "id": 4, "name": "생필품", "type": "expense" },
+    { "id": 5, "name": "공과금", "type": "expense" },
+    { "id": 6, "name": "월급", "type": "income" },
+    { "id": 7, "name": "장학금", "type": "income" },
+    { "id": 8, "name": "세뱃돈", "type": "income" },
+    { "id": 9, "name": "용돈", "type": "income" },
+    { "id": 10, "name": "기타", "type": "expense" },
+    { "id": 11, "name": "기타", "type": "income" }
   ]
 }
