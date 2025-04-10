@@ -3,7 +3,9 @@ import EditWrapperPage from '@/views/EditWrapperPage.vue';
 import NotFoundPage from '@/views/NotFoundPage.vue';
 import SignUp from '@/views/SignUp.vue';
 import Login from '@/views/Login.vue';
+import MyPage from '@/views/MyPage.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+
 
 // 라우터 인스턴스 생성
 const router = createRouter({
@@ -38,6 +40,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/mypage',
+      name: 'mypage',
+      component: MyPage,
     },
   ],
 });
