@@ -55,7 +55,10 @@
             v-for="(type, index) in types"
             :key="index"
             @click="toggleSelection('type', type)"
-            :class="['py-2 border rounded-lg', selectedType.includes(type) ? 'bg-blue-600 text-white' : 'text-gray-500']"
+            :class="[
+              'py-2 border rounded-lg',
+              selectedType.includes(type) ? 'bg-blue-600 text-white' : 'text-gray-500',
+            ]"
           >
             {{ type }}
           </button>
@@ -98,7 +101,6 @@
         <button @click="saveFilter" class="flex-1 rounded-lg py-3 font-semibold bg-blue-600 text-white">조회</button>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -125,7 +127,7 @@ export default {
         { text: '3개월', value: '3months' },
         { text: '6개월', value: '6months' },
       ],
-      types: ['카페', '외식', '식비', '생필품', '공과금', '월급', '장학금', '기타'],
+      types: ['카페', '외식', '식비', '생필품', '공과금', '월급', '장학금', '세뱃돈', '용돈', '기타'],
       orderOptions: [
         { text: '최신순', value: 'recent' },
         { text: '과거순', value: 'oldest' },

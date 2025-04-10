@@ -37,8 +37,8 @@ const routes = [
   },
   {
     path: '/record/edit/:id',
-    name: 'editWrapperPage',
-    component: EditWrapperPage,
+    name: 'EditRecord',
+    component: () => import('@/views/EditWrapperPage.vue'),
   },
   {
     path: '/mypage',

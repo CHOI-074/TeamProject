@@ -28,12 +28,12 @@ async function update() {
     ...form.value,
     userId: userStore.userId,
   });
-  router.push('/');
+  router.push('/transaction-history');
 }
 
 async function remove() {
   await store.deleteIncome(route.params.id);
-  router.push('/');
+  router.push('/transaction-history');
 }
 
 onMounted(fetchData);
@@ -43,16 +43,8 @@ onMounted(fetchData);
   <div class="IncomeEditPage">
     <RecordForm :initialForm="form" type="income" @update:form="updateForm" />
     <div class="button-row flex gap-4 mt-6 w-full">
-      <PrimaryButton
-        class="flex-1 py-3 text-base"
-        type="button"
-        @click="update"
-      >
-        수정
-      </PrimaryButton>
-      <DangerButton class="flex-1 py-3 text-base" type="button" @click="remove">
-        삭제
-      </DangerButton>
+      <PrimaryButton class="flex-1 py-3 text-base" type="button" @click="update"> 수정 </PrimaryButton>
+      <DangerButton class="flex-1 py-3 text-base" type="button" @click="remove"> 삭제 </DangerButton>
     </div>
   </div>
 </template>
