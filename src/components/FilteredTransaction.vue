@@ -1,13 +1,11 @@
 <template>
   <div>
-    <!-- 조건에 맞는 데이터 없을 때 -->
     <div v-if="filtered.length === 0" class="text-gray-500">조건에 맞는 거래 내역이 없습니다.</div>
 
-    <!-- 조건에 맞는 거래 내역 출력 -->
     <ul v-else>
       <li
         v-for="item in filtered"
-        :key="item.id"
+        :key="item.id + item.date"
         class="flex justify-around py-2 border-b border-gray-200 last:border-0"
       >
         <span class="text-gray-600">{{ item.date }}</span>
@@ -17,7 +15,8 @@
             'text-[#34C759]': Number(item.amount) > 0,
             'text-[#FF3B30]': Number(item.amount) < 0,
           }"
-          >{{ item.amount.toLocaleString() }}
+        >
+          {{ item.amount.toLocaleString() }}
         </span>
       </li>
     </ul>
@@ -25,38 +24,38 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'FilteredTransaction',
   data() {
     return {
-      income: [], // 수입 데이터
-      expense: [], // 지출 데이터
-      categories: [], // 카테고리 정보
+      income: [],
+      expense: [],
+      categories: [],
       filter: {
-        // 필터 조건 (로컬스토리지 기반)
         type: [],
         startDate: '',
         endDate: '',
         minAmount: '',
         maxAmount: '',
-        order: '',
+        order: 'latest', // 기본값 설정
       },
-      currentUserId: 'id123', // 현재 로그인한 사용자 ID
-      lastFilterData: '', // 마지막으로 불러온 필터 상태 (변경 감지용)
-      filterCheckTimer: null, // 필터 감시 타이머 핸들
+      currentUserId: 'id123',
+      lastFilterData: '',
+      filterCheckTimer: null,
     };
   },
   computed: {
-    // 조건에 맞게 필터링된 거래 내역 반환
     filtered() {
       const all = [
         ...this.income.map((item) => ({
           ...item,
-          amount: Number(item.amount), // 수입은 + 그대로
+          amount: Number(item.amount),
         })),
         ...this.expense.map((item) => ({
           ...item,
-          amount: -Math.abs(Number(item.amount)), // 지출은 - 붙여서 저장
+          amount: -Math.abs(Number(item.amount)),
         })),
       ].map((item) => {
         const category = this.categories.find((c) => Number(c.id) === Number(item.categoryId));
@@ -74,43 +73,58 @@ export default {
         this.filter.minAmount ||
         this.filter.maxAmount;
 
-      //  조건 없으면 전체 출력
-      if (!hasCondition) {
-        return all.sort((a, b) =>
-          this.filter.order === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)
-        );
-      }
+      const sorted = (list) =>
+        list.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
 
-      //  조건 있을 때만 필터링
-      return all
-        .filter((item) => {
-          const amount = Number(item.amount);
-          const matchesUser = item.userId === this.currentUserId;
-          const matchesType = this.filter.type.length === 0 || this.filter.type.includes(item.categoryName);
-          const matchesMin = !this.filter.minAmount || amount >= this.filter.minAmount;
-          const matchesMax = !this.filter.maxAmount || amount <= this.filter.maxAmount;
-          const matchesDate =
-            !this.filter.startDate ||
-            !this.filter.endDate ||
-            (item.date >= this.filter.startDate && item.date <= this.filter.endDate);
+          if (dateA.getTime() === dateB.getTime()) {
+            // 날짜 같을 때 보조 정렬: id 기준
+            return b.id - a.id;
+          }
 
-          return matchesUser && matchesType && matchesMin && matchesMax && matchesDate;
-        })
-        .sort((a, b) => {
-          return this.filter.order === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date);
+          return this.filter.order === 'oldest' ? dateA - dateB : dateB - dateA;
         });
+
+      const result = hasCondition
+        ? all.filter((item) => {
+            const amount = Number(item.amount);
+            const matchesUser = item.userId === this.currentUserId;
+            const matchesType = this.filter.type.length === 0 || this.filter.type.includes(item.categoryName);
+            const matchesMin = !this.filter.minAmount || amount >= this.filter.minAmount;
+            const matchesMax = !this.filter.maxAmount || amount <= this.filter.maxAmount;
+            const matchesDate =
+              !this.filter.startDate ||
+              !this.filter.endDate ||
+              (item.date >= this.filter.startDate && item.date <= this.filter.endDate);
+
+            return matchesUser && matchesType && matchesMin && matchesMax && matchesDate;
+          })
+        : all;
+
+      console.log('정렬 기준:', this.filter.order);
+      console.log(
+        '정렬 전:',
+        result.map((i) => i.date)
+      );
+      const sortedResult = sorted(result);
+      console.log(
+        '정렬 후:',
+        sortedResult.map((i) => i.date)
+      );
+
+      return sortedResult;
     },
   },
   mounted() {
-    this.loadFilter(); // 로컬스토리지에서 필터 불러오기
-    this.loadData(); // 수입/지출/카테고리 데이터 불러오기
-    this.startWatchingFilterChange(); // 필터 변경 감지 시작
+    this.loadFilter();
+    this.loadData();
+    this.startWatchingFilterChange();
   },
   beforeUnmount() {
-    clearInterval(this.filterCheckTimer); // 컴포넌트 제거 시 타이머 제거
+    clearInterval(this.filterCheckTimer);
   },
   methods: {
-    // 로컬스토리지에서 최신 필터 불러오기
     loadFilter() {
       const saved = localStorage.getItem('filterData');
       if (saved) {
@@ -120,27 +134,24 @@ export default {
           ...this.filter,
           ...parsed,
           type: Array.isArray(parsed.type) ? parsed.type : [],
+          order: parsed.order || 'latest',
         };
       }
     },
-
-    // json-server에서 데이터 3종 가져오기
     async loadData() {
       try {
         const [incomeRes, expenseRes, categoryRes] = await Promise.all([
-          fetch('http://localhost:3000/income'),
-          fetch('http://localhost:3000/expense'),
-          fetch('http://localhost:3000/category'),
+          axios.get('http://localhost:3000/income'),
+          axios.get('http://localhost:3000/expense'),
+          axios.get('http://localhost:3000/category'),
         ]);
-        this.income = await incomeRes.json();
-        this.expense = await expenseRes.json();
-        this.categories = await categoryRes.json();
+        this.income = incomeRes.data;
+        this.expense = expenseRes.data;
+        this.categories = categoryRes.data;
       } catch (e) {
-        console.error('데이터 불러오기 실패:', e);
+        console.error('axios로 데이터 불러오기 실패:', e);
       }
     },
-
-    // 로컬스토리지 변경 감지해서 필터 자동 업데이트
     startWatchingFilterChange() {
       this.filterCheckTimer = setInterval(() => {
         const current = localStorage.getItem('filterData');

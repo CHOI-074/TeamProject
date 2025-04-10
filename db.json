@@ -1,87 +1,107 @@
 {
-    "users": [
-      {
-        "id": "id123",
-        "username": "user1",
-        "password": "pass1",
-        "profileimImages": "http://localhost:3000/img/user1.jpg"
-      },
-      {
-        "id": "id12",
-        "username": "user2",
-        "password": "pass2",
-        "profileimImages": "http://localhost:3000/img/user2.jpg"
-      }
-    ],
-    "expense": [
-      {
-        "id": 1,
-        "userId": "id123",
-        "date":"2025-04-07",
-        "categoryId": 1,
-        "amount": 12000,
-        "memo": "마라탕"
-      },
-      {
-        "id": 2,
-        "userId": "id123",
-        "date": "2025-04-06",
-        "categoryId": 1,
-        "amount": 12000,
-        "memo": "마라탕"
-      },
-      {
-        "id": 3,
-        "userId": "id123",
-        "date": "2025-04-04",
-        "categoryId": 2,
-        "amount": 120000,
-        "memo": "마라탕"
-      },
-      {
-        "id": 4,
-        "userId": "id123",
-        "date": "2025-04-02",
-        "categoryId": 1,
-        "amount": 11650,
-        "memo": "마라탕"
-      }
-    ],
-    "income": [
-      {
-        "id": 1,
-        "userId": "id123",
-        "date": "2025-04-07",
-        "categoryId": 6,
-        "amount": 2800000001
-      },
-      {
-        "id": 2,
-        "userId": "id123",
-        "date": "2025-03-07",
-        "categoryId": 7,
-        "amount": 2900000
-      },
-      {
-        "id": 3,
-        "userId": "id1",
-        "date": "2025-02-07",
-        "categoryId": 11,
-        "amount": 2300000
-      }
-    ],
-    "category": [
-      { "id": 1, "name": "카페", "type": "expense" },
-      { "id": 2, "name": "외식", "type": "expense" },
-      { "id": 3, "name": "식비", "type": "expense" },
-      { "id": 4, "name": "생필품", "type": "expense" },
-      { "id": 5, "name": "공과금", "type": "expense" },
-      { "id": 6, "name": "월급", "type": "income" },
-      { "id": 7, "name": "장학금", "type": "income" },
-      { "id": 8, "name": "세뱃돈", "type": "income" },
-      { "id": 9, "name": "용돈", "type": "income" },
-      { "id": 10, "name": "기타", "type": "expense" },
-      { "id": 11, "name": "기타", "type": "income" }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": "id123",
+      "username": "user1",
+      "password": "pass1",
+      "profileimImages": "http://localhost:3000/img/user1.jpg"
+    },
+    {
+      "id": "id12",
+      "username": "user2",
+      "password": "pass2",
+      "profileimImages": "http://localhost:3000/img/user2.jpg"
+    }
+  ],
+  "expense": [
+    {
+      "id": 145,
+      "userId": "id123",
+      "date": "2025-04-07",
+      "categoryId": 1,
+      "amount": 12000,
+      "memo": "마라탕"
+    },
+    {
+      "id": 2,
+      "userId": "id123",
+      "date": "2025-04-06",
+      "categoryId": 1,
+      "amount": 12000,
+      "memo": "마라탕"
+    },
+    {
+      "id": 3,
+      "userId": "id123",
+      "date": "2025-04-04",
+      "categoryId": 2,
+      "amount": 120000,
+      "memo": "마라탕"
+    },
+    {
+      "id": 433,
+      "userId": "id123",
+      "date": "2025-04-02",
+      "categoryId": 1,
+      "amount": 11650,
+      "memo": "마라탕"
+    }
+  ],
+  "income": [
+    {
+      "id": 1213,
+      "userId": "id123",
+      "date": "2025-04-07",
+      "categoryId": 6,
+      "amount": 2800000001
+    },
+    {
+      "id": 111,
+      "userId": "id123",
+      "date": "2025-04-07",
+      "categoryId": 6,
+      "amount": 2800000001
+    },
+    {
+      "id": 8,
+      "userId": "id123",
+      "date": "2025-04-07",
+      "categoryId": 6,
+      "amount": 2800000001
+    },
+    {
+      "id": 3,
+      "userId": "id123",
+      "date": "2025-04-07",
+      "categoryId": 6,
+      "amount": 2800000001
+    },
+    {
+      "id": 2,
+      "userId": "id123",
+      "date": "2025-03-07",
+      "categoryId": 7,
+      "amount": 2900000
+    },
+    {
+      "id": 3,
+      "userId": "id1",
+      "date": "2025-02-07",
+      "categoryId": 11,
+      "amount": 2300000
+    }
+  ],
+  "category": [
+    { "id": 1, "name": "카페", "type": "expense" },
+    { "id": 2, "name": "외식", "type": "expense" },
+    { "id": 3, "name": "식비", "type": "expense" },
+    { "id": 4, "name": "생필품", "type": "expense" },
+    { "id": 5, "name": "공과금", "type": "expense" },
+    { "id": 6, "name": "월급", "type": "income" },
+    { "id": 7, "name": "장학금", "type": "income" },
+    { "id": 8, "name": "세뱃돈", "type": "income" },
+    { "id": 9, "name": "용돈", "type": "income" },
+    { "id": 10, "name": "기타", "type": "expense" },
+    { "id": 11, "name": "기타", "type": "income" }
+  ]
+}

@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <TransactionHistory />
-
+    <Header />
+    <Navigation />
+    <router-view />
   </div>
 </template>
 
 <script>
 import FilteredTransaction from './components/FilteredTransaction.vue';
 import TransactionHistory from './views/TransactionHistory.vue';
+import Header from './components/Header.vue';
+import Navigation from './components/Navigation.vue';
 
 export default {
   name: 'App',
   components: {
     TransactionHistory,
-    FilteredTransaction
+    FilteredTransaction,
+    Header,
+    Navigation,
   },
 };
 </script>

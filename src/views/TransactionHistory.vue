@@ -1,19 +1,5 @@
 <template>
   <div class="container mx-auto p-4 pb-32">
-    <!-- 헤더: 흰색 배경 -->
-    <header class="bg-white p-4 mb-4 text-center">
-      <h1 class="text-2xl font-bold">가계부</h1>
-    </header>
-
-    <!-- 네비게이션: 흰색 배경 -->
-    <nav class="bg-white p-4 mb-4 border-b border-gray-300 sticky top-0 z-50">
-      <ul class="flex justify-around">
-        <li class="py-2 px-4">My</li>
-        <li class="py-2 px-4 border-b-2 border-[#1814F3] font-bold text-[#1814F3]">거래 내역</li>
-        <li class="py-2 px-4">분석</li>
-      </ul>
-    </nav>
-
     <!-- 메인 section: 배경색 #F5F7FA, 상하 패딩 늘림 -->
     <section class="w-full min-h-screen bg-[#F5F7FA] p-8">
       <!-- 날짜 필터링 및 작성 버튼 영역 -->
@@ -67,12 +53,14 @@
 <script>
 import Filter from '@/components/Filter.vue';
 import FilteredTransaction from '@/components/FilteredTransaction.vue';
+import Navigation from '@/components/Navigation.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'TransactionHistory',
   components: {
     Filter,
-    FilteredTransaction
+    FilteredTransaction,
   },
   data() {
     return {
