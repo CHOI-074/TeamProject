@@ -1,17 +1,16 @@
-// main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import './assets/index.css';
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
-const pinia = createPinia()
+const app = createApp(App);
+const pinia = createPinia();
 
 // 플러그인 등록
-pinia.use(piniaPluginPersistedstate)
+pinia.use(piniaPluginPersistedstate);
 
-app.use(pinia)
-app.use(router)
-app.mount('#app')
+app.use(pinia);
+app.use(router);
+app.mount('#app');
