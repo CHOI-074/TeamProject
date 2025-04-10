@@ -1,13 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router'; // Vue Router
-import { createPinia } from 'pinia'; // Pinia
-import './assets/main.css'; // tailwinds 관련 설정
+import router from './router';
+import { createPinia } from 'pinia';
+import './index.css';  // 이 줄 꼭 필요!
 
 const app = createApp(App);
-
-app.use(createPinia()); // 상태 관리
-app.use(router); // 라우팅
-
+app.use(createPinia());
+app.use(router);
 app.mount('#app');
 
