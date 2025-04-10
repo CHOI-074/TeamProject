@@ -1,11 +1,13 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen px-4">
+  <div
+    class="flex flex-col items-center justify-center min-h-screen px-4 py-6 -mt-4 max-w-md mx-auto"
+  >
     <form
       @submit.prevent="handleSignup"
       class="w-full max-w-sm bg-white p-6 rounded-xl shadow-lg sm:max-w-md md:max-w-lg lg:max-w-1xl"
     >
       <div class="flex items-center w-full mb-6">
-        <button @click="router.push('/')" class="bg-blue-500 text-white p-2 rounded-full mr-3">
+        <button @click="router.push('/login')" class="bg-blue-500 text-white p-2 rounded-full mr-3">
           ←
         </button>
       </div>
@@ -59,7 +61,7 @@
       <!-- 회원가입 버튼 -->
       <button
         type="submit"
-        class="mb-3 w-full py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition duration-300"
+        class="mb-3 w-full py-2 bg-blue-500 text-white font-medium rounded-md transition duration-300"
       >
         회원가입 완료
       </button>
@@ -85,19 +87,17 @@ import axios from 'axios'
 export default defineComponent({
   name: 'SignUp',
   setup() {
-    // 사용자 입력 값들 reactive 객체로 관리
     const form = reactive({
       username: '',
       userId: '',
       password: '',
       passwordCheck: '',
     })
-    const errorMessage = ref('')    // 에러 메시지
-    const successMessage = ref('')  // 성공 메시지
-    const idCheckPassed = ref(false)// 아이디 중복 체크 여부
-    const router = useRouter()      // // 페이지 이동용
+    const errorMessage = ref('')
+    const successMessage = ref('')
+    const idCheckPassed = ref(false)
+    const router = useRouter()
 
-    // 아이디 입력값이 바뀌면 중복 체크 초기화 되도록
     watch(
       () => form.userId,
       () => {
@@ -107,7 +107,6 @@ export default defineComponent({
       },
     )
 
-    // 아이디 중복 체크 함수
     const handleCheckId = async () => {
       if (!form.userId.trim()) {
         errorMessage.value = '아이디를 입력해주세요.'
@@ -116,16 +115,13 @@ export default defineComponent({
       }
 
       try {
-        // users테이블에 form.userId와 같은 아이디가 있는지
         const { data } = await axios.get(`http://localhost:3000/users?userId=${form.userId}`)
 
         if (data.length > 0) {
-          // 이미 존재하는 경우
           errorMessage.value = '이미 사용 중인 아이디입니다.'
           successMessage.value = ''
           idCheckPassed.value = false
         } else {
-          //// 사용 가능한 아이디
           errorMessage.value = ''
           successMessage.value = '사용 가능한 아이디입니다.'
           idCheckPassed.value = true
@@ -137,7 +133,6 @@ export default defineComponent({
       }
     }
 
-    // 회원가입 제출 처리 함수
     const handleSignup = async () => {
       if (
         !form.username.trim() ||
@@ -150,21 +145,18 @@ export default defineComponent({
         return
       }
 
-      // 비밀번호 길이 검사
       if (form.password.length < 8) {
         errorMessage.value = '비밀번호는 최소 8자 이상이어야 합니다.'
         successMessage.value = ''
         return
       }
 
-      // 비밀번호 일치 검사
       if (form.password !== form.passwordCheck) {
         errorMessage.value = '비밀번호가 일치하지 않습니다.'
         successMessage.value = ''
         return
       }
 
-      // 중복 체크 확인
       if (!idCheckPassed.value) {
         errorMessage.value = '아이디 중복 체크를 해주세요.'
         successMessage.value = ''
@@ -176,6 +168,7 @@ export default defineComponent({
           userId: form.userId,
           username: form.username,
           password: form.password,
+          profileImage: 'kirby1',
         }
 
         await axios.post('http://localhost:3000/users', newUser)
@@ -183,7 +176,7 @@ export default defineComponent({
         errorMessage.value = ''
         successMessage.value = ''
         alert('회원가입 완료. 로그인 페이지로 이동합니다.')
-        router.push('/')
+        router.push('/login')
       } catch (error) {
         errorMessage.value = '서버 오류로 회원가입 실패'
         console.error(error)
