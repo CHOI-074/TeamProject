@@ -52,12 +52,12 @@ export default {
 }
 
 .dashboard-box {
-  background-color: white;
+  /* background-color: white; */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0); /* 이번달을 포함하는 박스 그림자 */
   border-radius: 8px;
   padding: 4% 5%; /* 패딩을 %로 설정하여 화면 크기에 비례하여 자동 조정 */
   width: 100%; /* 화면 크기에 맞게 가로 크기 설정 */
-  max-width: 600px; /* 최대 가로 크기 설정 */
+  max-width: 640px; /* 최대 가로 크기 설정 */
   min-width: 400px; /* 최소 가로 크기 설정 */
   box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
 }
@@ -74,7 +74,7 @@ export default {
 /* 정사각형 박스 컨테이너 */
 .box-container {
   display: flex;
-  gap: 1%; /* 정사각형 박스 사이의 간격 */
+  gap: 2%; /* 정사각형 박스 사이의 간격 */
   margin-top: 16px;
   flex-wrap: nowrap; /* 줄바꿈 없이 가로로 정렬 */
   justify-content: space-between; /* 박스 간의 간격을 일정하게 유지 */

@@ -1,28 +1,38 @@
-<!-- App.vue -->
 <template>
-  <div>
-    <!-- 네비게이션 바 -->
-    <nav class="flex gap-4 p-4 bg-gray-200">
-      <router-link to="/" class="hover:underline">필터</router-link>
-      <router-link to="/dash" class="hover:underline">대시보드</router-link>
-      <router-link to="/sum" class="hover:underline">총합보드</router-link>
-      <router-link to="/top5" class="hover:underline">Top 5 차트</router-link>
-      <router-link to="/analyze" class="hover:underline">애널라이즈뷰</router-link>
-    </nav>
-
-    <!-- 현재 라우터 경로에 맞는 컴포넌트를 여기에 렌더링 -->
+  <div id="app">
+    <!-- 라우터를 통해 페이지가 바뀌도록 설정 -->
+     <Header />
+    <Navigation />
+    <!-- 네비게이션 추가 -->
+    <!-- <TransactionHistory /> -->
     <router-view />
+    <!-- 페이지 컴포넌트 출력 -->
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue'
+import Navigation from './components/Navigation.vue'; // 경로는 실제 위치에 맞게 조정
+// import TransactionHistory from './components/Transaction.vue';
+
 export default {
   name: 'App',
+  components: {
+    Header,
+    Navigation,
+    // TransactionHistory,
+  },
 };
 </script>
 
 <style>
 body {
-  font-family: 'Arial', sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+#app {
+  text-align: center;
 }
 </style>

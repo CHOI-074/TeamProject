@@ -1,5 +1,6 @@
 <template>
   <div class="analyze-container">
+    <!-- <div class="px-4 py-6 max-w-md w-full mx-auto"></div> -->
     <!-- 대시보드 컴포넌트 -->
     <DashboardView />
 

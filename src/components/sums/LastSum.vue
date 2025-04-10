@@ -88,7 +88,7 @@ export default {
   methods: {
     // 숫자 증가 애니메이션
     animateNumber(field, targetValue) {
-      const duration = 1000; //  느리게: 2초로 증가
+      const duration = 1000; // ⏱ 느리게: 2초로 증가
       const startTime = performance.now();
 
       //  부드러운 가속/감속 곡선 함수

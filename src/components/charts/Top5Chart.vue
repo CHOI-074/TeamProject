@@ -144,10 +144,11 @@ export default {
 /* 전체 박스 스타일 */
 .top5-box {
   background-color: #ffffff; /* 배경색 */
-  border-radius: 1rem; /* 둥근 모서리 */
+  border-radius: 2.7rem; /* 둥근 모서리 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* 그림자 효과 */
   padding: 1rem; /* 내부 여백 */
-  max-width: 600px; /* 최대 너비 */
+  /* max-width: 550px; 최대 너비 */
+  width: 570px;
   margin: 1rem auto; /* 상하 여백 및 가운데 정렬 */
 }
 

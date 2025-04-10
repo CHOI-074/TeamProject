@@ -37,8 +37,8 @@ export default {
   display: flex;
   flex-direction: row; /* 수입/지출을 좌우 배치 */
   background-color: #ffffff;
-  border-radius: 50px;
-  width: 550px;
+  border-radius: 40px;
+  width: 580px;
   height: 137px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
