@@ -16,6 +16,7 @@ watch(
   () => route.query.type,
   (val) => {
     currentType.value = val || 'income';
+    console.log(currentType.value);
   },
   { immediate: true }
 );
@@ -32,21 +33,9 @@ function toggleType(type) {
 </script>
 
 <template>
-  <div
-    class="EditWrapperPage w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-4 md:px-8 lg:px-16 py-6"
-  >
-    <img
-      v-if="currentType === 'income'"
-      :src="incomeImg"
-      alt="수입 배너"
-      class="mx-auto mb-4 w-64 h-auto"
-    />
-    <img
-      v-else
-      :src="expenseImg"
-      alt="지출 배너"
-      class="mx-auto mb-4 w-64 h-auto"
-    />
+  <div class="EditWrapperPage w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-4 md:px-8 lg:px-16 py-6">
+    <img v-if="currentType === 'income'" :src="incomeImg" alt="수입 배너" class="mx-auto mb-4 w-64 h-auto" />
+    <img v-else :src="expenseImg" alt="지출 배너" class="mx-auto mb-4 w-64 h-auto" />
     <TypeSwitch :modelValue="currentType" @update:modelValue="toggleType" />
     <component
       v-if="currentType"
