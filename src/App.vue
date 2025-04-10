@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <FilteringComponent />
+    <router-view></router-view>
   </div>
 </template>
 
