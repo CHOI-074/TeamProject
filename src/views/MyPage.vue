@@ -4,9 +4,7 @@
   >
     <!-- 뒤로가기 버튼과 프로필 설정 제목 -->
     <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto flex items-center">
-      <button type="button" @click="goToMain" class="bg-blue-500 text-white p-2 rounded-full mr-3">
-        ←
-      </button>
+      <button type="button" @click="goToMain" class="bg-blue-500 text-white p-2 rounded-full mr-3">←</button>
       <h2 class="text-lg font-semibold">마이페이지</h2>
     </div>
 
@@ -23,10 +21,7 @@
     </div>
 
     <!-- 이미지 선택 팝업 -->
-    <div
-      v-if="isModalOpen"
-      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-    >
+    <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div class="bg-white p-6 rounded-lg w-96">
         <h3 class="text-lg font-semibold mb-4">프로필 이미지 선택</h3>
         <div class="flex justify-around mb-4">
@@ -40,15 +35,8 @@
             />
           </div>
         </div>
-        <button
-          @click="applySelectedImage"
-          class="w-full py-2 bg-blue-500 text-white rounded-md mt-4"
-        >
-          변경하기
-        </button>
-        <button @click="closeImageModal" class="w-full py-2 bg-gray-300 text-black rounded-md mt-2">
-          닫기
-        </button>
+        <button @click="applySelectedImage" class="w-full py-2 bg-blue-500 text-white rounded-md mt-4">변경하기</button>
+        <button @click="closeImageModal" class="w-full py-2 bg-gray-300 text-black rounded-md mt-2">닫기</button>
       </div>
     </div>
 
@@ -133,99 +121,99 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import axios from 'axios'
-import { useUserStore } from '@/stores/userStore'
+import { defineComponent, ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { useUserStore } from '@/stores/userStore';
 
 export default defineComponent({
   name: 'MyPage',
   setup() {
-    const userStore = useUserStore()
-    const id = userStore.id
-    const currentUserId = userStore.userId
-    const userName = userStore.username
-    const profileImage = userStore.profileImage
+    const userStore = useUserStore();
+    const id = userStore.id;
+    const currentUserId = userStore.userId;
+    const userName = userStore.username;
+    const profileImage = userStore.profileImage;
 
-    const selectedImageName = ref(profileImage.value || 'kirby1')
+    const selectedImageName = ref(profileImage.value || 'kirby1');
 
     // 이미지 이름 목록
-    const imageOptions = ref(['kirby1', 'kirby2', 'kirby3', 'kirby4'])
+    const imageOptions = ref(['kirby1', 'kirby2', 'kirby3', 'kirby4']);
 
     // 이미지 경로로 변환 (computed)
-    const selectedImage = computed(() => `/img/${selectedImageName.value}.png`)
+    const selectedImage = computed(() => `/img/${selectedImageName.value}.png`);
 
-    const isModalOpen = ref(false)
+    const isModalOpen = ref(false);
 
     // 모달 상태 및 입력값 관리
-    const showChangePasswordModal = ref(false) // 비밀번호 변경 모달 표시 여부
-    const oldPassword = ref('') // 현재 비밀번호
-    const newPassword = ref('') // 새 비밀번호
-    const newPasswordCheck = ref('') // 새 비밀번호 확인
-    const errorMessage = ref('') // 오류 메시지
+    const showChangePasswordModal = ref(false); // 비밀번호 변경 모달 표시 여부
+    const oldPassword = ref(''); // 현재 비밀번호
+    const newPassword = ref(''); // 새 비밀번호
+    const newPasswordCheck = ref(''); // 새 비밀번호 확인
+    const errorMessage = ref(''); // 오류 메시지
 
-    const router = useRouter()
+    const router = useRouter();
 
     // 메인 페이지로 이동
     const goToMain = () => {
-      router.push('/main')
-    }
+      router.push('/transaction-history');
+    };
 
     // 모달 닫기 및 입력값 초기화 함수
     const closeModal = () => {
-      oldPassword.value = ''
-      newPassword.value = ''
-      newPasswordCheck.value = ''
-      showChangePasswordModal.value = false
-    }
+      oldPassword.value = '';
+      newPassword.value = '';
+      newPasswordCheck.value = '';
+      showChangePasswordModal.value = false;
+    };
 
     // 마운트 시 유저 정보 불러오기
     onMounted(async () => {
       try {
         const { data } = await axios.get(`http://localhost:3000/users`, {
           params: { userId: currentUserId },
-        })
+        });
 
-        const user = data[0]
+        const user = data[0];
 
         if (user && user.profileImage) {
-          selectedImageName.value = user.profileImage
+          selectedImageName.value = user.profileImage;
         }
       } catch (error) {
-        console.error('사용자 정보 불러오기 실패:', error)
+        console.error('사용자 정보 불러오기 실패:', error);
       }
-    })
+    });
 
     // 팝업 열기/닫기
     const openImageModal = () => {
-      isModalOpen.value = true
-    }
+      isModalOpen.value = true;
+    };
 
     const closeImageModal = () => {
-      isModalOpen.value = false
-      selectedImageName.value = userStore.profileImage
-    }
+      isModalOpen.value = false;
+      selectedImageName.value = userStore.profileImage;
+    };
 
     // 이미지 선택
     const selectImage = (imageName) => {
-      selectedImageName.value = imageName
-    }
+      selectedImageName.value = imageName;
+    };
 
     // 이미지 저장
     const applySelectedImage = async () => {
       try {
         const { data } = await axios.patch(`http://localhost:3000/users/${id}`, {
           profileImage: selectedImageName.value,
-        })
+        });
 
-        userStore.profileImage = selectedImageName.value
+        userStore.profileImage = selectedImageName.value;
 
-        console.log('이미지 업데이트 성공:', data)
-        closeImageModal()
+        console.log('이미지 업데이트 성공:', data);
+        closeImageModal();
       } catch (error) {
-        console.error('이미지 업데이트 중 오류 발생:', error)
+        console.error('이미지 업데이트 중 오류 발생:', error);
       }
-    }
+    };
 
     // 비밀번호 변경 처리 함수
     const handleChangePassword = async () => {
@@ -233,48 +221,48 @@ export default defineComponent({
         // userId가 같은 사용자 정보 가져오기
         const { data } = await axios.get(`http://localhost:3000/users`, {
           params: { userId: currentUserId },
-        })
+        });
 
-        const user = data[0]
+        const user = data[0];
 
         if (!user) {
-          alert('사용자를 찾을 수 없습니다.')
-          return
+          alert('사용자를 찾을 수 없습니다.');
+          return;
         }
 
         if (user.password !== oldPassword.value) {
-          alert('현재 비밀번호가 일치하지 않습니다.')
-          return
+          alert('현재 비밀번호가 일치하지 않습니다.');
+          return;
         }
 
         if (newPassword.value.length < 8) {
-          alert('비밀번호는 최소 8자 이상이어야 합니다.')
-          return
+          alert('비밀번호는 최소 8자 이상이어야 합니다.');
+          return;
         }
 
         if (newPassword.value !== newPasswordCheck.value) {
-          alert('새 비밀번호가 일치하지 않습니다.')
-          return
+          alert('새 비밀번호가 일치하지 않습니다.');
+          return;
         }
 
         // 비밀번호 업데이트 요청
         await axios.patch(`http://localhost:3000/users/${user.id}`, {
           password: newPassword.value,
-        })
+        });
 
-        alert('비밀번호가 성공적으로 변경되었습니다.')
-        closeModal()
+        alert('비밀번호가 성공적으로 변경되었습니다.');
+        closeModal();
       } catch (error) {
-        errorMessage.value = '비밀번호 변경 중 오류가 발생했습니다.'
-        console.error(error)
+        errorMessage.value = '비밀번호 변경 중 오류가 발생했습니다.';
+        console.error(error);
       }
-    }
+    };
 
     // 로그아웃
     const handlerLogOut = () => {
-      userStore.clearUser()
-      router.push('/login')
-    }
+      userStore.clearUser();
+      router.push('/login');
+    };
 
     return {
       goToMain,
@@ -295,7 +283,7 @@ export default defineComponent({
       userName,
       handlerLogOut,
       closeModal,
-    }
+    };
   },
-})
+});
 </script>

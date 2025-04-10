@@ -1,32 +1,80 @@
 {
   "users": [
     {
-      "id": "id123",
-      "username": "user1",
-      "password": "pass1",
-      "profileImages": "http://localhost:3000/img/user1.jpg"
+      "id": "30b9",
+      "userId": "z",
+      "username": "z",
+      "password": "zzzzzzzzz",
+      "profileImage": "kirby2"
     },
     {
-      "id": "id12",
-      "username": "user2",
-      "password": "pass2",
-      "profileImages": "http://localhost:3000/img/user2.jpg"
+      "id": "b72a",
+      "userId": "a",
+      "username": "a",
+      "password": "12345678",
+      "profileImage": "kirby1"
+    },
+    {
+      "id": "7f6d",
+      "userId": "123123",
+      "username": "최창연",
+      "password": "chlckddus1",
+      "profileImage": "kirby1"
+    },
+    {
+      "id": "95d0",
+      "userId": "12341234",
+      "username": "최창연",
+      "password": "chlckddus1",
+      "profileImage": "kirby1"
     }
   ],
   "expense": [
     {
       "id": 1,
-      "userId": "id123",
+      "userId": "12341234",
       "date": "2025-04-07",
       "categoryId": 1,
       "amount": 12000,
       "memo": "마라탕"
+    },
+    {
+      "id": "6f9e",
+      "date": "2025-04-03",
+      "amount": 500000,
+      "categoryId": 3,
+      "memo": "",
+      "userId": "12341234"
+    },
+    {
+      "id": "7bf1",
+      "date": "2025-04-04",
+      "amount": 50000000,
+      "categoryId": 3,
+      "memo": "",
+      "userId": "12341234"
+    },
+    {
+      "id": "04ad",
+      "date": "2025-04-09",
+      "amount": 2000000000000,
+      "categoryId": 2,
+      "memo": "",
+      "userId": "12341234"
+    },
+    {
+      "id": "9bbf",
+      "date": "2025-03-06",
+      "amount": 88888888888888900,
+      "categoryId": 2,
+      "memo": "",
+      "userId": "12341234"
     }
   ],
   "income": [
     {
       "id": 1,
-      "userId": "id123",
+      "userId": "12341234",
       "date": "2025-04-07",
       "categoryId": 1,
       "amount": 2800000
@@ -52,20 +100,136 @@
       "categoryId": 8,
       "memo": "수입",
       "userId": "id123"
+    },
+    {
+      "id": "ce83",
+      "date": "2025-04-09",
+      "amount": 200000000,
+      "categoryId": 6,
+      "memo": "월급",
+      "userId": ""
+    },
+    {
+      "id": "196f",
+      "date": "2025-04-09",
+      "amount": 1233123123,
+      "categoryId": 6,
+      "memo": "asdf",
+      "userId": "12341234"
+    },
+    {
+      "id": "d56e",
+      "date": "2025-04-09",
+      "amount": 123123123,
+      "categoryId": 6,
+      "memo": "asdf",
+      "userId": "12341234"
+    },
+    {
+      "id": "3958",
+      "date": "2025-04-03",
+      "amount": 3000000000,
+      "categoryId": 7,
+      "memo": "",
+      "userId": "12341234"
+    },
+    {
+      "id": "3e81",
+      "date": "2025-04-09",
+      "amount": 3000000000,
+      "categoryId": 6,
+      "memo": "",
+      "userId": "12341234"
+    },
+    {
+      "id": "c702",
+      "date": "2025-04-10",
+      "amount": 2000000,
+      "categoryId": 6,
+      "memo": "국민",
+      "userId": "12341234"
+    },
+    {
+      "id": "fbe9",
+      "date": "2025-04-09",
+      "amount": 55555555555555550,
+      "categoryId": 6,
+      "memo": "123",
+      "userId": "12341234"
+    },
+    {
+      "id": "bb6c",
+      "date": "2025-04-08",
+      "amount": 33333333333,
+      "categoryId": 6,
+      "memo": "33333333333",
+      "userId": "12341234"
+    },
+    {
+      "id": "88fd",
+      "date": "2025-04-10",
+      "amount": 30000000000000,
+      "categoryId": 6,
+      "memo": "국민",
+      "userId": "12341234"
     }
   ],
   "category": [
-    { "id": 1, "name": "카페", "type": "expense" },
-    { "id": 2, "name": "외식", "type": "expense" },
-    { "id": 3, "name": "식비", "type": "expense" },
-    { "id": 4, "name": "생필품", "type": "expense" },
-    { "id": 5, "name": "공과금", "type": "expense" },
-    { "id": 6, "name": "월급", "type": "income" },
-    { "id": 7, "name": "장학금", "type": "income" },
-    { "id": 8, "name": "세뱃돈", "type": "income" },
-    { "id": 9, "name": "용돈", "type": "income" },
-    { "id": 10, "name": "기타", "type": "expense" },
-    { "id": 11, "name": "기타", "type": "income" }
+    {
+      "id": 1,
+      "name": "카페",
+      "type": "expense"
+    },
+    {
+      "id": 2,
+      "name": "외식",
+      "type": "expense"
+    },
+    {
+      "id": 3,
+      "name": "식비",
+      "type": "expense"
+    },
+    {
+      "id": 4,
+      "name": "생필품",
+      "type": "expense"
+    },
+    {
+      "id": 5,
+      "name": "공과금",
+      "type": "expense"
+    },
+    {
+      "id": 6,
+      "name": "월급",
+      "type": "income"
+    },
+    {
+      "id": 7,
+      "name": "장학금",
+      "type": "income"
+    },
+    {
+      "id": 8,
+      "name": "세뱃돈",
+      "type": "income"
+    },
+    {
+      "id": 9,
+      "name": "용돈",
+      "type": "income"
+    },
+    {
+      "id": 10,
+      "name": "기타",
+      "type": "expense"
+    },
+    {
+      "id": 11,
+      "name": "기타",
+      "type": "income"
+    }
   ],
   "transactions": [
     {

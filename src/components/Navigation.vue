@@ -2,7 +2,7 @@
   <nav class="bg-white p-4 mb-4 border-b border-gray-300 sticky top-0 z-50">
     <ul class="flex justify-around">
       <!-- My 탭 -->
-      <router-link to="/my" custom v-slot="{ navigate, isActive }">
+      <router-link to="/mypage" custom v-slot="{ navigate, isActive }">
         <li
           class="py-2 px-4 cursor-pointer"
           :class="{ 'border-b-2 border-[#1814F3] font-bold text-[#1814F3]': isActive }"
@@ -24,7 +24,7 @@
       </router-link>
 
       <!-- 분석 탭 -->
-      <router-link to="/analysis" custom v-slot="{ navigate, isActive }">
+      <router-link to="/analyzeview" custom v-slot="{ navigate, isActive }">
         <li
           class="py-2 px-4 cursor-pointer"
           :class="{ 'border-b-2 border-[#1814F3] font-bold text-[#1814F3]': isActive }"
