@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios';
+import { useUserStore } from '@/stores/userStore';
 
 export default {
   name: 'FilteredTransaction',
@@ -39,13 +40,18 @@ export default {
         endDate: '',
         minAmount: '',
         maxAmount: '',
-        order: 'latest', // 기본값 설정
+        order: 'latest',
       },
-      currentUserId: 'id123',
+      currentUserId: '', // 초기값 비워두기
       lastFilterData: '',
       filterCheckTimer: null,
     };
   },
+  created() {
+    const userStore = useUserStore();
+    this.currentUserId = userStore.userId; // 여기서 userId 가져오기
+  },
+
   computed: {
     filtered() {
       const all = [

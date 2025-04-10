@@ -1,16 +1,25 @@
 {
   "users": [
     {
-      "id": "id123",
-      "username": "user1",
-      "password": "pass1",
-      "profileImages": "http://localhost:3000/img/user1.jpg"
+      "id": "30b9",
+      "userId": "z",
+      "username": "z",
+      "password": "zzzzzzzzz",
+      "profileImage": "kirby2"
     },
     {
-      "id": "id12",
-      "username": "user2",
-      "password": "pass2",
-      "profileImages": "http://localhost:3000/img/user2.jpg"
+      "id": "b72a",
+      "userId": "a",
+      "username": "a",
+      "password": "12345678",
+      "profileImage": "kirby1"
+    },
+    {
+      "id": "7f6d",
+      "userId": "123123",
+      "username": "최창연",
+      "password": "chlckddus1",
+      "profileImage": "kirby1"
     }
   ],
   "expense": [
@@ -55,17 +64,61 @@
     }
   ],
   "category": [
-    { "id": 1, "name": "카페", "type": "expense" },
-    { "id": 2, "name": "외식", "type": "expense" },
-    { "id": 3, "name": "식비", "type": "expense" },
-    { "id": 4, "name": "생필품", "type": "expense" },
-    { "id": 5, "name": "공과금", "type": "expense" },
-    { "id": 6, "name": "월급", "type": "income" },
-    { "id": 7, "name": "장학금", "type": "income" },
-    { "id": 8, "name": "세뱃돈", "type": "income" },
-    { "id": 9, "name": "용돈", "type": "income" },
-    { "id": 10, "name": "기타", "type": "expense" },
-    { "id": 11, "name": "기타", "type": "income" }
+    {
+      "id": 1,
+      "name": "카페",
+      "type": "expense"
+    },
+    {
+      "id": 2,
+      "name": "외식",
+      "type": "expense"
+    },
+    {
+      "id": 3,
+      "name": "식비",
+      "type": "expense"
+    },
+    {
+      "id": 4,
+      "name": "생필품",
+      "type": "expense"
+    },
+    {
+      "id": 5,
+      "name": "공과금",
+      "type": "expense"
+    },
+    {
+      "id": 6,
+      "name": "월급",
+      "type": "income"
+    },
+    {
+      "id": 7,
+      "name": "장학금",
+      "type": "income"
+    },
+    {
+      "id": 8,
+      "name": "세뱃돈",
+      "type": "income"
+    },
+    {
+      "id": 9,
+      "name": "용돈",
+      "type": "income"
+    },
+    {
+      "id": 10,
+      "name": "기타",
+      "type": "expense"
+    },
+    {
+      "id": 11,
+      "name": "기타",
+      "type": "income"
+    }
   ],
   "transactions": [
     {

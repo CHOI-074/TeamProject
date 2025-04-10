@@ -1,5 +1,7 @@
 <template>
   <div class="container mx-auto p-4 pb-32">
+    <Header />
+    <Navigation />
     <!-- 메인 section: 배경색 #F5F7FA, 상하 패딩 늘림 -->
     <section class="w-full min-h-screen bg-[#F5F7FA] p-8">
       <!-- 날짜 필터링 및 작성 버튼 영역 -->
@@ -53,12 +55,16 @@
 <script>
 import Filter from '@/components/Filter.vue';
 import FilteredTransaction from '@/components/FilteredTransaction.vue';
+import Navigation from '@/components/Navigation.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'TransactionHistory',
   components: {
     Filter,
     FilteredTransaction,
+    Navigation,
+    Header,
   },
   data() {
     return {
