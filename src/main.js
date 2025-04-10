@@ -15,4 +15,3 @@ app.use(pinia)
 app.use(router); // 라우팅
 
 app.mount('#app');
-

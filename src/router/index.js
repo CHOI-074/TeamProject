@@ -2,6 +2,7 @@ import CreateWrapperPage from '@/views/CreateWrapperPage.vue';
 import EditWrapperPage from '@/views/EditWrapperPage.vue';
 import NotFoundPage from '@/views/NotFoundPage.vue';
 import SignUp from '@/views/SignUp.vue';
+import Login from '@/views/Login.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 // 라우터 인스턴스 생성
@@ -29,10 +30,15 @@ const router = createRouter({
       component: NotFoundPage,
     },
     {
-    path: '/signup',
-    name: 'signup',
-    component: SignUp,
-  },
+      path: '/signup',
+      name: 'signup',
+      component: SignUp,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
   ],
 });
 

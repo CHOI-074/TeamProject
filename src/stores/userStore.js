@@ -1,39 +1,43 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useUserStore = defineStore(
   'user',
   () => {
-    const userId = ref('');
-    const username = ref('');
-    // const profileimImages = ref('')
+    const id = ref('')
+    const userId = ref('')
+    const username = ref('')
+    const profileImage = ref('')
 
     function setUser(userData) {
-      userId.value = userData.userId;
-      username.value = userData.username;
-      // profileimImages.value = userData.profileimImages || ''
+      id.value = userData.id
+      userId.value = userData.userId
+      username.value = userData.username
+      profileImage.value = userData.profileImage
     }
 
     function clearUser() {
-      userId.value = '';
-      username.value = '';
-      // profileimImages.value = ''
+      id.value = ''
+      userId.value = ''
+      username.value = ''
+      profileImage.value = ''
     }
 
     return {
+      id,
       userId,
       username,
-      // profileimImages,
+      profileImage,
       setUser,
       clearUser,
-    };
+    }
   },
   {
     persist: true,
-  }
-);
+  },
+)
 
 // 가져가서 쓸 때 사용법
 // import { useUserStore } from '@/stores/userStore'
 // const userStore = useUserStore()
-// userStore.userId 또는 userStore.username
+// userStore.id 또는 userStore.username
