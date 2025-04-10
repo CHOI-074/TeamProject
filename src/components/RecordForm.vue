@@ -59,7 +59,7 @@ onMounted(fetchCategories);
 </script>
 
 <template>
-  <div class="RecordForm flex flex-col gap-4">
+  <div class="RecordForm flex flex-col md:grid md:grid-cols-2 gap-4">
     <FormGroup label="날짜">
       <BaseInput
         v-model="form.date"
@@ -70,14 +70,22 @@ onMounted(fetchCategories);
     </FormGroup>
 
     <FormGroup label="금액">
-      <BaseInput
-        type="number"
-        v-model.number="form.amount"
-        placeholder="금액을 입력하세요"
-      />
+      <div class="relative w-full">
+        <BaseInput
+          type="number"
+          v-model.number="form.amount"
+          placeholder="금액을 입력하세요"
+          class="w-full pr-14"
+        />
+        <span
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm pointer-events-none"
+        >
+          원
+        </span>
+      </div>
     </FormGroup>
 
-    <FormGroup label="카테고리">
+    <FormGroup label="카테고리" class="md:col-span-2">
       <input
         type="text"
         :value="selectedCategoryName"
@@ -92,7 +100,7 @@ onMounted(fetchCategories);
       />
     </FormGroup>
 
-    <FormGroup label="메모">
+    <FormGroup label="메모" class="md:col-span-2">
       <BaseInput
         type="text"
         v-model="form.memo"

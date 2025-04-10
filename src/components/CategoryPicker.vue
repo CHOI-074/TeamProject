@@ -41,14 +41,6 @@ watch(
 
 <template>
   <div class="CategoryPicker flex flex-wrap gap-2 mt-2">
-    <!-- <button
-      v-for="category in categories"
-      :key="category.id"
-      :class="{ selected: modelValue == category.id }"
-      @click="handleClick(category)"
-      {{ category.name }}
-      </button>
-    > -->
     <CategoryButton
       v-for="category in categories"
       :key="category.id"

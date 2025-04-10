@@ -32,7 +32,9 @@ function toggleType(type) {
 </script>
 
 <template>
-  <div class="EditWrapperPage max-w-md mx-auto px-4 py-6">
+  <div
+    class="EditWrapperPage w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto px-4 md:px-8 lg:px-16 py-6"
+  >
     <img
       v-if="currentType === 'income'"
       :src="incomeImg"
