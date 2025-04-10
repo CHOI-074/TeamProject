@@ -27,6 +27,27 @@
       "username": "최창연",
       "password": "chlckddus1",
       "profileImage": "kirby1"
+    },
+    {
+      "id": "3ce0",
+      "userId": "qwe123",
+      "username": "홍길동",
+      "password": "qwer1234",
+      "profileImage": "kirby1"
+    },
+    {
+      "id": "1d74",
+      "userId": "qqq",
+      "username": "김철수",
+      "password": "11111111",
+      "profileImage": "kirby1"
+    },
+    {
+      "id": "ab20",
+      "userId": "ckddus1541",
+      "username": "홍길동",
+      "password": "chlckddus1",
+      "profileImage": "kirby1"
     }
   ],
   "expense": [
@@ -69,6 +90,14 @@
       "categoryId": 2,
       "memo": "",
       "userId": "12341234"
+    },
+    {
+      "id": "2678",
+      "date": "2025-04-01",
+      "amount": 2000000,
+      "categoryId": 3,
+      "memo": "",
+      "userId": "ckddus1541"
     }
   ],
   "income": [
@@ -172,6 +201,38 @@
       "categoryId": 6,
       "memo": "국민",
       "userId": "12341234"
+    },
+    {
+      "date": "2025-04-10",
+      "amount": 2,
+      "categoryId": 6,
+      "memo": "",
+      "id": "9c3f",
+      "userId": "qqq"
+    },
+    {
+      "id": "a2ac",
+      "date": "2025-03-31",
+      "amount": 2000000,
+      "categoryId": 9,
+      "memo": "",
+      "userId": "ckddus1541"
+    },
+    {
+      "id": "01aa",
+      "date": "2025-04-09",
+      "amount": 2000000,
+      "categoryId": 9,
+      "memo": "",
+      "userId": "ckddus1541"
+    },
+    {
+      "id": "2b23",
+      "date": "2025-04-02",
+      "amount": 2000000,
+      "categoryId": 6,
+      "memo": "",
+      "userId": "ckddus1541"
     }
   ],
   "category": [

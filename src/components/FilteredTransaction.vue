@@ -172,7 +172,7 @@ export default {
   },
   methods: {
     goToWrite(item) {
-      this.$router.push({ path: '/record/edit/:id', query: { id: item.id } });
+      this.$router.push({ name: 'EditRecord', params: { id: item.id } });
     },
     loadFilter() {
       const saved = localStorage.getItem('filterData');
