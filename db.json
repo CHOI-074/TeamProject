@@ -1,18 +1,16 @@
 {
   "users": [
     {
-      "id": "30b9",
-      "userId": "z",
-      "username": "z",
-      "password": "zzzzzzzzz",
-      "profileImage": "kirby2"
+      "id": "id123",
+      "username": "user1",
+      "password": "pass1",
+      "profileImages": "http://localhost:3000/img/user1.jpg"
     },
     {
-      "id": "b72a",
-      "userId": "a",
-      "username": "a",
-      "password": "12345678",
-      "profileImage": "kirby1"
+      "id": "id12",
+      "username": "user2",
+      "password": "pass2",
+      "profileImages": "http://localhost:3000/img/user2.jpg"
     }
   ],
   "expense": [
@@ -46,6 +44,14 @@
       "date": "2025-02-07",
       "categoryId": 11,
       "amount": 2300000
+    },
+    {
+      "id": "5ba1",
+      "date": "2025-04-01",
+      "amount": 4000000,
+      "categoryId": 8,
+      "memo": "수입",
+      "userId": "id123"
     }
   ],
   "category": [

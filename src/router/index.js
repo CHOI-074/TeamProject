@@ -30,6 +30,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/transaction-history',
+      name: 'TransactionHistory',
+      component: TransactionHistory,
+    },
+    {
       path: '/record/create',
       name: 'createWrapperPage',
       component: CreateWrapperPage,
