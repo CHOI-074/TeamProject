@@ -95,13 +95,13 @@ export default defineComponent({
     })
     const errorMessage = ref('')
     const successMessage = ref('')
-    const idCheckPassed = ref(false)
+    const idCheck = ref(false)
     const router = useRouter()
 
     watch(
       () => form.userId,
       () => {
-        idCheckPassed.value = false
+        idCheck.value = false
         errorMessage.value = ''
         successMessage.value = ''
       },
@@ -120,11 +120,11 @@ export default defineComponent({
         if (data.length > 0) {
           errorMessage.value = '이미 사용 중인 아이디입니다.'
           successMessage.value = ''
-          idCheckPassed.value = false
+          idCheck.value = false
         } else {
           errorMessage.value = ''
           successMessage.value = '사용 가능한 아이디입니다.'
-          idCheckPassed.value = true
+          idCheck.value = true
         }
       } catch (error) {
         errorMessage.value = '중복 체크 실패: 서버 오류'
@@ -157,7 +157,7 @@ export default defineComponent({
         return
       }
 
-      if (!idCheckPassed.value) {
+      if (!idCheck.value) {
         errorMessage.value = '아이디 중복 체크를 해주세요.'
         successMessage.value = ''
         return
@@ -187,7 +187,7 @@ export default defineComponent({
       form,
       errorMessage,
       successMessage,
-      idCheckPassed,
+      idCheck,
       handleSignup,
       handleCheckId,
       router,
