@@ -4,34 +4,38 @@
     <div v-if="filtered.length === 0" class="text-gray-500">조건에 맞는 거래 내역이 없습니다.</div>
 
     <!-- 조건에 맞는 거래 내역 출력 -->
-    <ul v-else>
+    <ul v-else class="w-full">
       <li
         v-for="item in displayedItems"
         :key="item.id"
-        class="flex justify-around py-2 border-b border-gray-200 last:border-0"
+        class="grid grid-cols-3 w-full py-3 border-b border-gray-200 last:border-0 hover:bg-gray-50"
       >
-        <span class="text-gray-600">{{ item.date }}</span>
-        <span class="text-center font-medium">{{ item.categoryName }}</span>
+        <span class="date-cell text-gray-600">{{ item.date }}</span>
+        <span class="category-cell font-medium">{{ item.categoryName }}</span>
         <span
+          class="amount-cell"
           :class="{
             'text-[#34C759]': Number(item.amount) > 0,
             'text-[#FF3B30]': Number(item.amount) < 0,
           }"
-          >{{ item.amount.toLocaleString() }}
-        </span>
+          >{{ item.amount.toLocaleString() }}</span
+        >
       </li>
     </ul>
 
     <!-- 더보기 버튼 -->
-    <div v-if="filtered.length > displayLimit" class="text-center py-3">
-      <button @click="loadMore" class="px-4 py-2 text-blue-500 border border-white rounded hover:bg-blue-50 transition">
-        MORE (+{{ filtered.length - displayLimit }})
+    <div v-if="filtered.length > displayLimit" class="text-center py-4">
+      <button
+        @click="loadMore"
+        class="px-6 py-2 text-blue-500 border border-blue-200 rounded-full hover:bg-blue-50 transition"
+      >
+        더보기 (+{{ filtered.length - displayLimit }})
       </button>
     </div>
 
     <!-- 총액 표시 영역 -->
-    <div class="total-amount-section py-3 border-t border-gray-300 mt-4">
-      <div class="flex justify-between px-4">
+    <div class="total-amount-section py-4 border-t border-gray-300 mt-4">
+      <div class="flex justify-between px-6">
         <span class="font-semibold">총액:</span>
         <span
           class="font-bold"
@@ -69,7 +73,7 @@ export default {
       lastFilterData: '', // 마지막으로 불러온 필터 상태 (변경 감지용)
       filterCheckTimer: null, // 필터 감시 타이머 핸들
       initialItemCount: 7, // 처음에 보여줄 아이템 개수
-      loadMoreIncrement: 5, // 더보기 버튼 클릭시 추가할 아이템 개수
+      loadMoreIncrement: 10, // 더보기 버튼 클릭시 추가할 아이템 개수
       displayLimit: 7, // 현재 화면에 표시할 아이템 수 제한
     };
   },
@@ -222,10 +226,43 @@ ul {
   padding: 0;
 }
 
+/* 그리드 레이아웃 적용 */
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  width: 100%;
+  align-items: center;
+}
+
+/* 각 셀에 대한 스타일 */
+.date-cell {
+  text-align: left;
+  padding-left: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-cell {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount-cell {
+  text-align: right;
+  padding-right: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 총액 영역 CSS */
 .total-amount-section {
   position: sticky;
   bottom: 0;
   background-color: white;
-  /* box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); */
+  z-index: 10;
 }
 </style>
