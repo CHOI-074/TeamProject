@@ -2,7 +2,7 @@
   <div
     class="flex flex-col items-center justify-start min-h-screen bg-white px-6 md:px-12 lg:px-20 pt-6 pb-10 py-6 max-w-md mx-auto"
   >
-    <!-- 헤더: 뒤로가기 버튼과 프로필 설정 제목 -->
+    <!-- 뒤로가기 버튼과 프로필 설정 제목 -->
     <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto flex items-center">
       <button type="button" @click="goToMain" class="bg-blue-500 text-white p-2 rounded-full mr-3">
         ←
