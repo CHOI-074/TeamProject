@@ -1,1 +1,12 @@
-{}
+{
+    "users": [
+      {
+        "id": "30b9",
+        "userId": "z",
+        "username": "z",
+        "password": "zzzzzzzzz",
+        "profileImage": "kirby1"
+      }
+    ]
+  }
+  
