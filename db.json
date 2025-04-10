@@ -1,16 +1,18 @@
 {
   "users": [
     {
-      "id": "id123",
-      "username": "user1",
-      "password": "pass1",
-      "profileimImages": "http://localhost:3000/img/user1.jpg"
+      "id": "30b9",
+      "userId": "z",
+      "username": "z",
+      "password": "zzzzzzzzz",
+      "profileImage": "kirby2"
     },
     {
-      "id": "id12",
-      "username": "user2",
-      "password": "pass2",
-      "profileimImages": "http://localhost:3000/img/user2.jpg"
+      "id": "b72a",
+      "userId": "a",
+      "username": "a",
+      "password": "12345678",
+      "profileImage": "kirby1"
     }
   ],
   "expense": [
