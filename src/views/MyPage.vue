@@ -1,119 +1,158 @@
 <template>
-  <div
-    class="flex flex-col items-center justify-start min-h-screen bg-white px-6 md:px-12 lg:px-20 pt-6 pb-10 py-6 max-w-md mx-auto"
-  >
-    <!-- 뒤로가기 버튼과 프로필 설정 제목 -->
-    <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto flex items-center">
-      <button type="button" @click="goToMain" class="bg-blue-500 text-white p-2 rounded-full mr-3">←</button>
-      <h2 class="text-lg font-semibold">마이페이지</h2>
-    </div>
-
-    <!-- 프로필 이미지 -->
-    <div class="relative mb-6">
-      <img :src="selectedImage" alt="Profile" class="w-24 h-24 rounded-full object-cover" />
-      <!-- 이미지 선택 버튼 -->
-      <button
-        @click="openImageModal"
-        class="absolute bottom-0 right-0 bg-orange-300 p-1.5 rounded-full text-white text-xs hover:bg-orange-400"
+  <div class="container mx-auto p-4 pb-32">
+    <Header />
+    <Navigation />
+    <div
+      class="flex flex-col items-center justify-start pt-6 pb-10 py-6 max-w-md mx-auto"
+    >
+      <!-- 뒤로가기 버튼과 프로필 설정 제목 -->
+      <div
+        class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto flex items-center"
       >
-        ✎
-      </button>
-    </div>
+        <button
+          type="button"
+          @click="goToMain"
+          class="bg-blue-500 text-white p-2 rounded-full mr-3"
+        >
+          ←
+        </button>
+        <h2 class="text-lg font-semibold">마이페이지</h2>
+      </div>
 
-    <!-- 이미지 선택 팝업 -->
-    <div v-if="isModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div class="bg-white p-6 rounded-lg w-96">
-        <h3 class="text-lg font-semibold mb-4">프로필 이미지 선택</h3>
-        <div class="flex justify-around mb-4">
-          <div v-for="imageName in imageOptions" :key="imageName" class="relative">
-            <img
-              :src="`/img/${imageName}.png`"
-              alt="Option"
-              class="w-20 h-20 object-cover rounded-full cursor-pointer"
-              :class="{ 'border-4 border-blue-500': selectedImageName === imageName }"
-              @click="selectImage(imageName)"
-            />
+      <!-- 프로필 이미지 -->
+      <div class="relative mb-6">
+        <img
+          :src="selectedImage"
+          alt="Profile"
+          class="w-24 h-24 rounded-full object-cover"
+        />
+        <!-- 이미지 선택 버튼 -->
+        <button
+          @click="openImageModal"
+          class="absolute bottom-0 right-0 bg-orange-300 p-1.5 rounded-full text-white text-xs hover:bg-orange-400"
+        >
+          ✎
+        </button>
+      </div>
+
+      <!-- 이미지 선택 팝업 -->
+      <div
+        v-if="isModalOpen"
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      >
+        <div class="bg-white p-6 rounded-lg w-96">
+          <h3 class="text-lg font-semibold mb-4">프로필 이미지 선택</h3>
+          <div class="flex justify-around mb-4">
+            <div
+              v-for="imageName in imageOptions"
+              :key="imageName"
+              class="relative"
+            >
+              <img
+                :src="`/img/${imageName}.png`"
+                alt="Option"
+                class="w-20 h-20 object-cover rounded-full cursor-pointer"
+                :class="{
+                  'border-4 border-blue-500': selectedImageName === imageName,
+                }"
+                @click="selectImage(imageName)"
+              />
+            </div>
           </div>
+          <button
+            @click="applySelectedImage"
+            class="w-full py-2 bg-blue-500 text-white rounded-md mt-4"
+          >
+            변경하기
+          </button>
+          <button
+            @click="closeImageModal"
+            class="w-full py-2 bg-gray-300 text-black rounded-md mt-2"
+          >
+            닫기
+          </button>
         </div>
-        <button @click="applySelectedImage" class="w-full py-2 bg-blue-500 text-white rounded-md mt-4">변경하기</button>
-        <button @click="closeImageModal" class="w-full py-2 bg-gray-300 text-black rounded-md mt-2">닫기</button>
       </div>
-    </div>
 
-    <!-- 프로필 정보 -->
-    <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto">
-      <h3 class="text-sm font-bold text-blue-600 mb-3">프로필 정보</h3>
-      <div class="bg-gray-100 rounded-md px-4 py-2 text-sm mb-2 flex items-center gap-x-4">
-        <label class="text-gray-800 font-medium w-24">ID</label>
-        <span class="text-gray-800">{{ currentUserId }}</span>
+      <!-- 프로필 정보 -->
+      <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-6 mx-auto">
+        <h3 class="text-sm font-bold text-blue-600 mb-3">프로필 정보</h3>
+        <div
+          class="bg-gray-100 rounded-md px-4 py-2 text-sm mb-2 flex items-center gap-x-4"
+        >
+          <label class="text-gray-800 font-medium w-24">ID</label>
+          <span class="text-gray-800">{{ currentUserId }}</span>
+        </div>
+        <div
+          class="bg-gray-100 rounded-md px-4 py-2 text-sm mb-2 flex items-center gap-x-4"
+        >
+          <label class="text-gray-800 font-medium w-24">Name</label>
+          <span class="text-gray-800">{{ userName }}</span>
+        </div>
       </div>
-      <div class="bg-gray-100 rounded-md px-4 py-2 text-sm mb-2 flex items-center gap-x-4">
-        <label class="text-gray-800 font-medium w-24">Name</label>
-        <span class="text-gray-800">{{ userName }}</span>
-      </div>
-    </div>
 
-    <!-- 보안 -->
-    <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-8 mx-auto">
-      <h3 class="text-sm font-bold text-blue-500 mb-2">보안</h3>
+      <!-- 보안 -->
+      <div class="w-full max-w-xs md:max-w-md lg:max-w-lg mb-8 mx-auto">
+        <h3 class="text-sm font-bold text-blue-500 mb-2">보안</h3>
+        <button
+          type="button"
+          @click="showChangePasswordModal = true"
+          class="w-full bg-gray-100 rounded-md px-4 py-2 text-sm text-left hover:bg-gray-200"
+        >
+          비밀번호 변경
+        </button>
+      </div>
+
+      <!-- 로그아웃 버튼 -->
       <button
         type="button"
-        @click="showChangePasswordModal = true"
-        class="w-full bg-gray-100 rounded-md px-4 py-2 text-sm text-left hover:bg-gray-200"
+        @click="handlerLogOut"
+        class="w-full max-w-xs md:max-w-md lg:max-w-lg py-2 bg-blue-500 text-white text-sm font-semibold rounded-md mx-auto"
       >
-        비밀번호 변경
+        로그아웃
       </button>
-    </div>
 
-    <!-- 로그아웃 버튼 -->
-    <button
-      type="button"
-      @click="handlerLogOut"
-      class="w-full max-w-xs md:max-w-md lg:max-w-lg py-2 bg-blue-500 text-white text-sm font-semibold rounded-md mx-auto"
-    >
-      로그아웃
-    </button>
-
-    <!-- 비밀번호 변경 모달 -->
-    <div
-      v-if="showChangePasswordModal"
-      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50"
-    >
-      <div class="bg-white p-6 rounded-xl shadow-lg w-80">
-        <h3 class="text-lg font-bold mb-4">비밀번호 변경</h3>
-        <input
-          v-model="oldPassword"
-          type="password"
-          placeholder="현재 비밀번호"
-          class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          v-model="newPassword"
-          type="password"
-          placeholder="새로운 비밀번호"
-          class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          v-model="newPasswordCheck"
-          type="password"
-          placeholder="비밀번호 확인"
-          class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <div class="flex justify-end gap-2">
-          <button
-            type="button"
-            @click="closeModal"
-            class="px-3 py-1 text-sm rounded-md border border-gray-300 hover:bg-gray-100 font-semibold"
-          >
-            취소
-          </button>
-          <button
-            type="button"
-            @click="handleChangePassword"
-            class="px-3 py-1 text-sm bg-[rgb(255,204,0)] text-black rounded-md font-semibold"
-          >
-            변경
-          </button>
+      <!-- 비밀번호 변경 모달 -->
+      <div
+        v-if="showChangePasswordModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50"
+      >
+        <div class="bg-white p-6 rounded-xl shadow-lg w-80">
+          <h3 class="text-lg font-bold mb-4">비밀번호 변경</h3>
+          <input
+            v-model="oldPassword"
+            type="password"
+            placeholder="현재 비밀번호"
+            class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            v-model="newPassword"
+            type="password"
+            placeholder="새로운 비밀번호"
+            class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            v-model="newPasswordCheck"
+            type="password"
+            placeholder="비밀번호 확인"
+            class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div class="flex justify-end gap-2">
+            <button
+              type="button"
+              @click="closeModal"
+              class="px-3 py-1 text-sm rounded-md border border-gray-300 hover:bg-gray-100 font-semibold"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              @click="handleChangePassword"
+              class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md font-semibold"
+            >
+              변경
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -124,10 +163,16 @@
 import { defineComponent, ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import Header from '@/components/Header.vue';
+import Navigation from '@/components/Navigation.vue';
 import { useUserStore } from '@/stores/userStore';
 
 export default defineComponent({
   name: 'MyPage',
+  components: {
+    Header,
+    Navigation,
+  },
   setup() {
     const userStore = useUserStore();
     const id = userStore.id;
@@ -169,6 +214,12 @@ export default defineComponent({
 
     // 마운트 시 유저 정보 불러오기
     onMounted(async () => {
+      // ->>>로그인 상태 확인
+      if (!userStore.id || !userStore.userId) {
+        router.push('/login');
+        alert('로그인이 필요합니다.');
+        return;
+      }
       try {
         const { data } = await axios.get(`http://localhost:3000/users`, {
           params: { userId: currentUserId },
@@ -202,9 +253,12 @@ export default defineComponent({
     // 이미지 저장
     const applySelectedImage = async () => {
       try {
-        const { data } = await axios.patch(`http://localhost:3000/users/${id}`, {
-          profileImage: selectedImageName.value,
-        });
+        const { data } = await axios.patch(
+          `http://localhost:3000/users/${id}`,
+          {
+            profileImage: selectedImageName.value,
+          }
+        );
 
         userStore.profileImage = selectedImageName.value;
 
