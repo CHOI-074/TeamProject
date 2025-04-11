@@ -7,7 +7,7 @@
       class="w-full max-w-sm bg-white p-6 rounded-xl shadow-lg sm:max-w-md md:max-w-lg lg:max-w-1xl"
     >
       <div class="flex items-center w-full mb-6">
-        <button @click="router.push('/login')" class="bg-blue-500 text-white p-2 rounded-full mr-3">
+        <button type="button" @click="router.push('/login')" class="bg-blue-500 text-white p-2 rounded-full mr-3">
           ←
         </button>
       </div>
