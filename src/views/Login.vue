@@ -5,22 +5,10 @@
         <img class="h-40 w-auto rounded-lg" src="@/assets/logo.png" alt="logo" />
       </div>
 
-      <!-- 로그인 텍스트 -->
-      <!-- <h3 class="text-3xl font-semibold text-left mb-6">로그인</h3> -->
-
-      <!-- <div class="flex justify-start -mt-8 -ml-10">
-        <img class="h-40 w-auto rounded-lg" src="./img/login.png" alt="login" />
-      </div> -->
-
       <div class="flex flex-col items-center justify-center -mt-12 -mb-3">
         <img class="h-60 w-auto rounded-lg" src="@/assets/login.png" alt="login" />
       </div>
 
-      <!-- <div class="flex justify-start -mt-12 ml-15">
-        <img class="h-45 w-auto rounded-lg" src="./img/login.png" alt="login" />
-      </div> -->
-
-      <!-- 아이디 입력 -->
       <input
         v-model="userId"
         type="text"
@@ -39,7 +27,7 @@
       <!-- 로그인 버튼 -->
       <button
         type="submit"
-        class="mb-3 w-full py-2 bg-blue-500 text-black font-medium rounded-md transition duration-300"
+        class="mb-3 w-full py-2 bg-blue-500 text-white font-medium rounded-md transition duration-300"
       >
         로그인
       </button>
